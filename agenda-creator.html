@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program Agenda Generator – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Program Agenda Generator</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#part-1-creating-a-new-program-agenda">Part 1 — Creating a New Program Agenda</a></li><li><a href="#step-1-test-the-api-connection">Step 1: Test the API Connection</a></li><li><a href="#step-2-select-your-program">Step 2: Select Your Program</a></li><li><a href="#step-3-complete-program-details">Step 3: Complete Program Details</a></li><li><a href="#step-4-complete-the-schedule-sessions-table">Step 4: Complete the Schedule Sessions Table</a></li><li><a href="#step-5-preview-and-export">Step 5: Preview and Export</a></li><li><a href="#part-2-updating-an-existing-agenda-import-pdf">Part 2 — Updating an Existing Agenda (Import PDF)</a></li><li><a href="#part-3-exporting-and-sending-instructor-calendar-invites">Part 3 — Exporting and Sending Instructor Calendar Invites</a></li><li><a href="#exporting-the-ics-file">Exporting the .ics File</a></li><li><a href="#importing-into-the-clear-learning-outlook-calendar">Importing into the CLEAR Learning Outlook Calendar</a></li><li><a href="#forwarding-invites-to-instructors-and-facilitators">Forwarding Invites to Instructors and Facilitators</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<p>Use this guide to create program agendas, instructor agendas, and Outlook calendar invites for any CLEAR Learning program using the <strong>Program Agenda Generator</strong> tool.</p>
+<div class="callout neutral"><p><strong>What this tool does</strong></p>
+<ul>
+<li><p>Create a new program agenda from scratch for any virtual or in-person CLEAR Learning program</p></li>
+<li><p>Update an existing agenda by importing a previously generated PDF — useful for adding instructors or making schedule changes without starting over</p></li>
+<li><p>Generate a separate Instructor Agenda PDF that lists assigned instructors per session</p></li>
+<li><p>Export Outlook calendar invites (.ics) for all live sessions in one file, pre-set to start 15 minutes early</p></li>
+</ul></div>
+<h2 id="part-1-creating-a-new-program-agenda">Part 1 — Creating a New Program Agenda</h2>
+<h2 id="step-1-test-the-api-connection">Step 1: Test the API Connection</h2>
+<p>When you open the tool, click the <strong>Test Connection</strong> button in the <strong>API Connection</strong> section. The status indicator will turn green when connected to TalentLMS.</p>
+<h2 id="step-2-select-your-program">Step 2: Select Your Program</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td>1</td>
+<td>Under <strong>1. Select Program</strong>, make sure the <strong>New Program</strong> tab is selected.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><p>Click inside the <strong>Program Course</strong> field and type to search, or scroll the list.</p>
+<p><strong>Virtual programs</strong> have a light blue “Virtual” tag. <strong>In-person programs</strong> have a light green “In-Person” tag. Select the correct form of the course.</p></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>A confirmation message will appear below the field showing the number of sessions loaded (e.g., “✓ Loaded 13 sessions (7 Zoom, 6 self-paced)” or “✓ Loaded in-person program (3-day schedule)”).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="step-3-complete-program-details">Step 3: Complete Program Details</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td>1</td>
+<td><strong>Program Title</strong> — auto-filled from the selected course. Update only if needed.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><strong>Cohort / Session</strong> — enter the month and year the program starts (e.g., <strong>August 2026</strong>).</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><p><strong>All Times In</strong> — select the appropriate time zone from the dropdown.</p>
+<blockquote>
+<p>• Virtual programs: always <strong>Eastern Time (ET)</strong>.</p>
+<p>• In-person programs: use the time zone of the event location.</p>
+</blockquote></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td><strong>Introductory Text</strong> — auto-filled based on the selected program. Edit only if necessary. Note: this field uses HTML formatting for bold, italics, and other styling.</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td><p><strong>Default Session Start Time</strong> — select the start time for all live sessions in the cohort. This is typically <strong>11:00 AM ET</strong> for virtual programs.</p>
+<p>Once set, the schedule table will automatically populate start times for all Zoom sessions and calculate end times based on the known session duration for each session type.</p></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td><strong>In-person programs only</strong> — enter the <strong>Start Date (Day 1)</strong>, <strong>Daily Start Time</strong>, and <strong>Location</strong>. All session times will adjust automatically.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout neutral"><p><strong>⏱ Auto-calculated times: End</strong> times are automatically calculated from the hardcoded session duration for each session. For example, selecting 11:00 AM for Investigative Process (a 2-hour session) will set the end time to 1:00 PM. If you update a start time directly in the table, the end time will recalculate from that new start time.</p></div>
+<h2 id="step-4-complete-the-schedule-sessions-table">Step 4: Complete the Schedule Sessions Table</h2>
+<p>Scroll down to the Schedule Sessions table. Each row represents one session. Zoom sessions require dates, times, and instructor assignments. Self-paced rows show dashes and require no input.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td>1</td>
+<td>Date column — click the date field for each Zoom session and select the session date from the calendar picker, or type it in directly.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Start / End times — leave as auto-populated unless a session differs from the default. Editing a start time will recalculate the end time automatically.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><strong>Platform</strong> — pre-set based on the program type. Only change if needed.</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td><strong>Instructor</strong> — select from the dropdown for each Zoom session. If the instructor is not yet confirmed, leave blank and return to this step later.</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td><strong>Zoom Link</strong> — paste the Zoom meeting URL for each virtual session. This field populates the Location field in the Outlook calendar invite. You may leave this blank and return to it later — Zoom links are often not available when you first create the event in Novi.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p><strong>📌 Note:</strong> You will not typically have instructors or Zoom links when you first create the agenda for a Novi event. It is expected that you will return to update these fields later using the Import Existing Agenda PDF workflow (see Part 2).</p></div>
+<h2 id="step-5-preview-and-export">Step 5: Preview and Export</h2>
+<p>Scroll down to the Preview &amp; Export section. Use the buttons to generate the outputs you need.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td>1</td>
+<td><strong>Preview Agenda</strong> — displays a formatted preview of the agenda in the browser. Use this to review before exporting.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><strong>Program Agenda PDF</strong> — exports the attendee-facing agenda. This is the PDF that is attached to the event listing in Novi.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><strong>Instructor Agenda PDF</strong> — exports an internal version of the agenda with instructor names listed. Marked “For Internal Use Only.” Generate this once instructors are confirmed.</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td><strong>Export Instructor Calendar Invites (.ics)</strong> — downloads a single .ics file containing one calendar event per live session. See Part 3 for how to use this file.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="part-2-updating-an-existing-agenda-import-pdf">Part 2 — Updating an Existing Agenda (Import PDF)</h2>
+<p>Use this workflow when you need to update an agenda that was previously generated by this tool — for example, to add instructor names, update Zoom links, or change session times. You do not need to re-enter all the information manually.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td>1</td>
+<td>In <strong>Section 1 — Select Program</strong>, click the <strong>Import Existing Agenda PDF</strong> tab (next to New Program).</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Drag and drop your existing Program Agenda PDF onto the upload area, or click the area to browse for the file.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>The tool will read the PDF and automatically populate <strong>Program Details</strong> (title, cohort, time zone) and all session dates and times.</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Review and update any fields in <strong>Program Details</strong> if needed (e.g., correcting a typo or changing the cohort label).</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>To change the session start time, update the <strong>Default Session Start Time</strong> picker. All session times in the table will update to reflect the new time.</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>Add or update <strong>Instructor</strong> assignments and <strong>Zoom Links</strong> in the Schedule Sessions table.</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>Export the outputs you need using the Preview &amp; Export buttons (same as Part 1, Step 5).</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout important"><p><strong>⚠️ Important:</strong> Only PDFs generated by this tool can be imported. The import reads session names and dates from the PDF structure. If the PDF was created elsewhere or heavily edited outside the tool, the import may not populate correctly.</p></div>
+<p><strong><br />
+</strong></p>
+<h2 id="part-3-exporting-and-sending-instructor-calendar-invites">Part 3 — Exporting and Sending Instructor Calendar Invites</h2>
+<p>The Export Instructor Calendar Invites (.ics) button generates a single file containing one Outlook calendar event for every live session in the program. Each event is pre-configured with the session name, cohort, time zone, Zoom link (if entered), instructor name (if assigned), and a standard setup reminder message.</p>
+<div class="callout neutral"><p><strong>⏰ 15-Minute Early Start: Each</strong> calendar invite is set to begin 15 minutes before the agenda start time. This is the setup window for facilitators and instructors to log in, run a tech check, and resolve any issues before the session begins.</p></div>
+<h2 id="exporting-the-ics-file">Exporting the .ics File</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td>1</td>
+<td>Complete the Schedule Sessions table with session dates, times, instructor assignments, and Zoom links (if available).</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>In the <strong>Preview &amp; Export</strong> section, click <strong>Export Instructor Calendar Invites (.ics)</strong>.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>The file will download automatically. The filename will include the cohort name (e.g., August_2026_Instructor_Invites.ics).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="importing-into-the-clear-learning-outlook-calendar">Importing into the CLEAR Learning Outlook Calendar</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td>1</td>
+<td>Locate the downloaded <strong>.ics</strong> file and double-click it.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>New Outlook will open to the <strong>Upload from File</strong> popup window.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Select the appropriate calendar from the <strong>drop-down menu</strong> (CLEAR Learning).</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Click the <strong>Import</strong> button.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="forwarding-invites-to-instructors-and-facilitators">Forwarding Invites to Instructors and Facilitators</h2>
+<p>The .ics file does not automatically send invites to instructors. To get the sessions on their calendars, you can send the event invite from the CLEAR Learning calendar.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td>1</td>
+<td>Open the CLEAR Learning calendar and locate the appropriate session.</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Click in the Required field and enter the email address for the appropriate instructor.</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Click the Send Update button.</td>
+</tr>
+</tbody>
+</table></div>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

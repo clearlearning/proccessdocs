@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Report Generator – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Exam Report Generator</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#before-you-begin">Before You Begin</a></li><li><a href="#process-guide">Process Guide</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>The Exam Report Generator pulls final exam data from TalentLMS, provides question-level analysis, imports payment data from Novi, issues digital badges through Credly and sends exam reminder emails via Power Automate.</p>
+<p>This guide covers the full process from pulling exam data through issuing digital badges in Credly, as well as the process for assigning the final exam to a cohort.</p>
+<p>After all steps are complete you will have a complete report by cohort containing exam scoring, payment confirmation, badge issue dates and certificate assignment dates.</p>
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Make sure you have the following:</p>
+<ul>
+<li><p>Access to the CLEAR Learning Administrative Tools Dashboard</p></li>
+<li><p>Your CLEAR Learning Portal auth token (saved automatically after first use)</p></li>
+<li><p>Your Credly auth token (available in the credly admin portal)</p></li>
+<li><p>Access to the CLEAR Staff SharePoint site (for exam reminder emails)</p></li>
+<li><p>Access to the NoviAMS admin portal (Events tab)</p></li>
+<li><p>Access to Credly (credly.com) with organization-level permissions</p></li>
+</ul>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> If this is your first time using the tool, you will need the auth token provided by your administrator. After the first successful connection, the token is saved in your browser automatically.</p></div>
+<h2 id="process-guide">Process Guide</h2>
+<p><strong>Part 1: Pull and Review Exam Data</strong></p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>From the <strong>Administrative Tools Dashboard</strong>, click the <strong>Exam Report Generator</strong> card. If you are not automatically connected, click the <strong>Test Connection</strong> button.</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td><p>Select the final exam course for the program from the <strong>Course (Exam Program)</strong> list.</p>
+<p><strong>Note</strong>: For Online programs, make sure to select the <strong>final exam course</strong>, not the program course. In-Person programs contain the test within the course.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><p>Select the cohort from the <strong>Group (Cohort)</strong> list and verify that the value in the <strong>Exam Type</strong> field matches the program. If it does not, delete the contents of the field to view the list of options.</p>
+<p><strong>Exam types: NCIT Basic US Final Exam (74 Qs), NCIT Basic Canadian Final Exam (72 Qs), NCIT Specialized (60 Qs)</strong></p></td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td>Click the <strong>Pull Exam Data</strong> button. The tool will display a list showing how each cohort member performed.</td>
+</tr>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td><p>Navigate to the <strong>Question Analysis</strong> tab. Review the data to identify any questions with a higher-than-expected failure rate.</p>
+<p>Exclude any identified questions by clicking on the question number and then clicking the <strong>Recalculate Adjusted Grades</strong> button.</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p>
+<tr class="header">
+<th><strong>Tip:</strong> To reverse the exclusion, return to the <strong>Question Analysis</strong> tab, unselect the question, and recalculate again.</p></div>
+<p><strong>Part 2: Import Payment Data</strong></p>
+<p>There are two ways to pull payment data from Novi.</p>
+<ol type="1">
+<li><p>Automatically though the connection in the tool</p></li>
+<li><p>By manually exporting the attendee data from Novi and uploading into the tool</p></li>
+</ol>
+<p>The steps for both options are below.</p>
+<h3 id="automated-process-preferred">Automated Process (Preferred)</h3>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>6</strong></td>
+<td>Navigate to the <strong>Payment Import</strong> tab</td>
+</tr>
+<tr class="even">
+<td><strong>7</strong></td>
+<td>Enter the Auth token if necessary (it is the same one used for the main page) and click the <strong>Connect</strong> button</td>
+</tr>
+<tr class="odd">
+<td><strong>8</strong></td>
+<td>Select your event from the list. Events are in chronological order from furthest future date to furthest past date. Type to filter the <strong>NOVI EVENT</strong> field by start date, event name, or event type.</td>
+</tr>
+<tr class="even">
+<td><strong>9</strong></td>
+<td>Once you have located the appropriate event, click the <strong>Pull Payment Data</strong> button.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> You will see a confirmation message once the data pull is complete. Once you see that, navigate back to the <strong>Exam Report</strong> tab to confirm the data pull was successful.</p></div>
+<h3 id="manual-process-backup-process">Manual Process (Backup Process)</h3>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Alt-Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>6</strong></td>
+<td>In the NoviAMS admin portal, navigate to the <strong>Events</strong> tab and open the event for the cohort.</td>
+</tr>
+<tr class="even">
+<td><strong>7</strong></td>
+<td>From the <strong>Attendees</strong> tab, click the <strong>Excel icon</strong> above the attendee table and select <strong>All Fields</strong>. This will download an export of registered attendees.</td>
+</tr>
+<tr class="odd">
+<td><strong>8</strong></td>
+<td>Return to the <strong>Exam Report Generator</strong>. Drag and drop the downloaded file into the <strong>Payment Import</strong> area. A <strong>Yes</strong> or <strong>Unpaid</strong> marker will appear next to each registered attendee.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> Blank payment markers typically indicate CLEAR staff accounts or the CLEAR Learning example account. These can be ignored.</p></div>
+<p><strong>Part 3: Send Exam Reminder Emails (If Applicable)</strong></p>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> Exam reminders are sent at two points during the testing window: halfway through the window and the day before the window closes.</p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>10</strong></td>
+<td>In the <strong>Exam Report Generator</strong>, navigate to the <strong>Email Reminders</strong> tab. Here you will see all attendees assigned to the cohort, who have been assigned to the final exam, and have not completed it.</td>
+</tr>
+<tr class="even">
+<td><strong>11</strong></td>
+<td><p>Enter the appropriate date in the <strong>Exam Deadline</strong> field, remove any attendees you do not wish to generate a reminder for, and click the <strong>Generate Reminder Emails</strong> button.</p>
+<p><strong>Note:</strong> Deselect any accounts that you do not wish to generate an email for. This is typically clear staff or demo accounts.</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> This does not send the emails. It generates the email files for export.</p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>12</strong></td>
+<td>Verify the <strong>deadline</strong> in the <strong>pop-up confirmation</strong> and click <strong>Continue</strong>. Review the email preview.</td>
+</tr>
+<tr class="even">
+<td><strong>13</strong></td>
+<td>Click the <strong>Export Emails for Power Automate</strong> button to download a zip folder. Unzip the folder and upload the files to the <strong>SharePoint ExamReminders</strong> folder following the same process as the <strong>Status Report Generator</strong> (see the Status Report Generator Process Guide, Part 2).</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Part 4: Send Exam Failure Notifications</strong></p>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> When a learner fails an exam, CLEAR offers the option to retake the exam. The below process allows you to automatically generate the form email that will inform the learners that they failed and what to do next should they wish to retake the exam.</p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>14</strong></td>
+<td>Navigate to the Email Reminders tab</td>
+</tr>
+<tr class="even">
+<td><strong>15</strong></td>
+<td>Click the <strong>X</strong> Exam Failed Notice button</td>
+</tr>
+<tr class="odd">
+<td><strong>16</strong></td>
+<td>De-select any users from the list as needed.</td>
+</tr>
+<tr class="even">
+<td><strong>17</strong></td>
+<td>Populate the <strong>Retake Fee</strong>, <strong>Contact Email</strong> and <strong>Retake Access Duration</strong> fields as appropriate.</td>
+</tr>
+<tr class="odd">
+<td><strong>18</strong></td>
+<td>Click the Generate Exam Failed Emails button and review the preview field.</td>
+</tr>
+<tr class="even">
+<td><strong>19</strong></td>
+<td>Click the <strong>Export Emails for Power Automate</strong> button to download a zip folder. Unzip the folder and upload the files to the <strong>SharePoint ExamReminders</strong> folder following the same process as the <strong>Status Report Generator</strong> (see the Status Report Generator Process Guide, Part 2).</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Part 5: Issue Digital Badges</strong></p>
+<p>There are two ways to issue digital badges, through the Exam Report Generator, or via manual upload. Through the generator is the preferred method but the manual upload is available as a backup.</p>
+
+<h4 id="automated-process-preferred-1">Automated Process (preferred)</h4>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>20</strong></td>
+<td>Navigate to the <strong>Credly Badges</strong> tab.</td>
+</tr>
+<tr class="even">
+<td><strong>21</strong></td>
+<td><p>If not already connected, click the <strong>Connect</strong> button.</p>
+<p><strong>Note</strong>: If you do not have the Credly API token, it is available in the Credly Admin portal.</p>
+<ol type="1">
+<li><p>Click on the <strong>login</strong> icon in the top right corner</p></li>
+<li><p>Select the <strong>Developers</strong> menu option</p></li>
+<li><p>Navigate to the <strong>Authorization Tokens</strong> tab</p></li>
+<li><p>Copy the active token (look at the created on and expires at dates)</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td><strong>22</strong></td>
+<td><p>Click the <strong>Check Issued Badges</strong> button.</p>
+<p><strong>Note</strong>: It may take 30 – 60 seconds for the system to pull the badge eligibility results.</p></td>
+</tr>
+<tr class="even">
+<td><strong>23</strong></td>
+<td>Click the Issue Badges via Credly API button. The system will connect with Credly and upload the badges for delivery.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="manual-process-back-up">Manual Process (Back Up)</h4>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Alt-Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>20</strong></td>
+<td>Click <strong>Export XLSX</strong> to download the cohort exam report. Use this file to update the master tracking spreadsheet after the cohort ends.</td>
+</tr>
+<tr class="even">
+<td><strong>21</strong></td>
+<td>When you are ready to issue digital badges, click <strong>Export Credly CSV</strong>. This creates a pre-formatted file for upload to Credly.</td>
+</tr>
+<tr class="odd">
+<td><strong>22</strong></td>
+<td>Go to <strong>credly.com</strong> and sign in. If needed, navigate to your organization page using the profile menu.</td>
+</tr>
+<tr class="even">
+<td><strong>23</strong></td>
+<td>Click the <strong>Issue</strong> tab, then click <strong>Upload CSV</strong>. Select the Credly CSV file from your <strong>Downloads</strong> folder.</td>
+</tr>
+<tr class="odd">
+<td><strong>24</strong></td>
+<td>Under the <strong>Replace credentials identified as duplicates?</strong> Heading, select <strong>No</strong>. If someone has already earned a badge, it does not need to be reissued.</td>
+</tr>
+<tr class="even">
+<td><strong>25</strong></td>
+<td>Select the checkbox to send notification emails, then click <strong>Issue</strong>. Credly will process the badges and display a confirmation of how many were issued.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="download-the-exam-report">Download the Exam Report</h3>
+<p>This is an option part of the process. And can be used to:</p>
+<ul>
+<li><p>Provide a final accounting of attendee results for a program</p></li>
+<li><p>Confirm what digital badges and certificates have been issued and when</p></li>
+<li><p>Quickly see who has completed the exam and if they have paid their event fee</p></li>
+</ul>
+<p>Once you have completed all of the steps above (excluding alternate steps unless needed) navigate back to the Exam Report tab. Now the Paid, Digital Badge Issued, and Certificate Assigned fields have all been populated with the most current information.</p>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

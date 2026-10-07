@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Updating Module Evaluation Links – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Updating Module Evaluation Links</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#part-1-virtual-asynchronous-module-evaluation-process-guide">Part 1: Virtual Asynchronous Module Evaluation Process Guide</a></li><li><a href="#part-2-virtual-instructor-led-module-evaluation-process-guide">Part 2: Virtual Instructor-Led Module Evaluation Process Guide</a></li><li><a href="#part-3-in-person-instructor-led-module-evaluation-process-guide">Part 3: In-Person Instructor-Led Module Evaluation Process Guide</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>Each module in TalentLMS, asynchronous or instructor-led, contains an embedded module evaluation unit that links learners to a SurveyMonkey survey. The survey link includes custom variables that automatically tag each response with the correct course, version, delivery method, and cohort — so you never have to sort or filter responses manually after the fact.</p>
+<p>Because the cohort variable changes with every new cohort, the link inside each module must be updated before learners access the module.</p>
+<div class="callout note"><p>
+<tr class="header">
+<th><p><strong>Note:</strong> This process document addresses the three types of Survey links to generate:</p>
+<ul>
+<li><p>Virtual Asynchronous Modules (Self-Study)</p></li>
+<li><p>Virtual Instructor-Led Sessions (Zoom sessions)</p></li>
+<li><p>In-Person Instructor-Led Modules</p></li>
+</ul>
+<p>Each type has a slightly different process as outlined below.</p></p></div>
+<h2 id="part-1-virtual-asynchronous-module-evaluation-process-guide">Part 1: Virtual Asynchronous Module Evaluation Process Guide</h2>
+<h3 id="step-1-generate-the-survey-link">Step 1: Generate the Survey Link</h3>
+<p>The Survey Link Generator tool (Available in the Administrative Tools Dashboard under the Evaluation Reporting heading) creates a pre-populated SurveyMonkey URL that automatically passes cohort and module information through to each survey response. Open the tool and complete the following fields:</p>
+<div class="figure-table"><div class="figure"><img src="images/eval-links/image1.png"  /></div><div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 64%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Field</strong></th>
+<th><strong>Value</strong></th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><strong>Survey Type</strong></td>
+<td>Asynchronous Modules</td>
+</tr><tr class="header">
+<td><strong>Course</strong></td>
+<td>The course abbreviation (NCITS, NCITB, etc.)</td>
+</tr><tr class="odd">
+<td><strong>Version</strong></td>
+<td>This is used to indicate <strong>US</strong> or <strong>Canadian</strong> versions of the basic course and to distinguish between <strong>NCIT Workshops</strong> (DDI, IRSM, Communications, and Ethics)</td>
+</tr><tr class="header">
+<td><strong>Method</strong></td>
+<td>Async</td>
+</tr><tr class="odd">
+<td><strong>Module Name</strong></td>
+<td>The module identifier (M01, M02, etc)</td>
+</tr><tr class="header">
+<td><strong>Instructor</strong></td>
+<td>Leave blank</td>
+</tr><tr class="odd">
+<td><strong>Cohort</strong></td>
+<td>Use TalentLMS Cohort Code (2026 05 NCIT B CAN Open)</td>
+</tr>
+</tbody>
+</table></div></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> Once all fields are complete, click the <strong>Copy link</strong> button. The tool will display the full survey URL with all populated variables embedded.</p></div>
+<h3 id="step-2-update-the-module-in-talentlms">Step 2: Update the Module in TalentLMS</h3>
+<p>With the generated link copied to your clipboard, follow these steps to update the module evaluation content in TalentLMS:</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>Navigate to the course in <strong>TalentLMS</strong></td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td><p>Locate the <strong>evaluation</strong> module.</p>
+<p><img src="images/eval-links/image2.png"  /></p>
+<p><strong>Note</strong>: If there are multiple evaluation modules in the list, select the one that is not <strong>red</strong>.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><p>Hover over the unit and click the <strong>edit</strong> menu option</p>
+<p><img src="images/eval-links/image3.png"  /></p></td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td><p>Click the <strong>Code View</strong> button in the top right corner of the editor toolbar. It is the last icon on the right.</p>
+<p><img src="images/eval-links/image4.png"  /></p></td>
+</tr>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td><p>Scroll to the bottom of the code editor window and locate <strong>line 27</strong>. This line begins with an &lt;a href= tag and contains the current survey link.</p>
+<p><img src="images/eval-links/image5.png"  /></p>
+<p>Highlight the entire URL — starting from https and ending at the closing quotation mark before the word target. Do not include the quotation marks themselves in your selection</p></td>
+</tr>
+<tr class="even">
+<td><strong>6</strong></td>
+<td>Paste the new link you generated in <strong>Part 1</strong>. It will replace the <strong>highlighted URL</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>7</strong></td>
+<td><p>Click the <strong>Save</strong> <strong>and View</strong> dropdown button and select <strong>Back to Units List</strong> to save and exit.</p>
+<p><img src="images/eval-links/image6.png"  /></p></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="part-2-virtual-instructor-led-module-evaluation-process-guide">Part 2: Virtual Instructor-Led Module Evaluation Process Guide</h2>
+<h3 id="step-1-generate-the-survey-link-1">Step 1: Generate the Survey Link</h3>
+<p>Generate the survey link as done in Part 1 of this process guide; however, use the values provided below.</p>
+<div class="figure-table"><div class="figure"><img src="images/eval-links/image1.png"  /></div><div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 64%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Field</strong></th>
+<th><strong>Value</strong></th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><strong>Survey Type</strong></td>
+<td>Instructor Evaluations</td>
+</tr><tr class="header">
+<td><strong>Course</strong></td>
+<td>The course abbreviation (NCITS, NCITB, etc.)</td>
+</tr><tr class="odd">
+<td><strong>Version</strong></td>
+<td>This is used to indicate US or Canadian versions of the basic course and to distinguish between NCIT Workshops (DDI, IRSM, Communications, and Ethics)</td>
+</tr><tr class="header">
+<td><strong>Method</strong></td>
+<td>V-ILT</td>
+</tr><tr class="odd">
+<td><strong>Module Name</strong></td>
+<td>The module identifier (M01, M02, etc)</td>
+</tr><tr class="header">
+<td><strong>Instructor</strong></td>
+<td><p>Select the instructor’s name from the drop-down list provided.</p>
+<p><strong>Note:</strong> If an instructor’s name is not listed, contact <a href="mailto:avance@clearhq.org?subject=Edit%20Request%20to%20Module%20Eval%20Link%20Generator">avance@clearhq.org</a></p></td>
+</tr><tr class="odd">
+<td><strong>Cohort</strong></td>
+<td>Use TalentLMS Cohort Code (2026 05 NCIT B CAN Open)</td>
+</tr>
+</tbody>
+</table></div></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> Once all fields are complete, click the <strong>Copy link</strong> button. The tool will display the full survey URL with all populated variables embedded.</p></div>
+<h3 id="step-2-add-the-survey-link-to-the-module-in-talentlms">Step 2: Add the Survey Link to the Module in TalentLMS</h3>
+<p>Instructor-led modules follow the same process as asynchronous modules. With the generated link copied to your clipboard, complete <strong>Part 1, Step 2</strong> to update the module&#8217;s evaluation unit in TalentLMS.</p>
+<div class="callout important"><p><strong>Modules with both instructor-led and asynchronous components:</strong> only the <em>asynchronous</em> evaluation link goes in the TalentLMS evaluation unit. Paste the <em>instructor-led</em> evaluation link in the Zoom chat near the end of the live session and ask participants to complete it.</p></div>
+<h2 id="part-3-in-person-instructor-led-module-evaluation-process-guide">Part 3: In-Person Instructor-Led Module Evaluation Process Guide</h2>
+<h3 id="step-1-generate-the-survey-link-2">Step 1: Generate the Survey Link</h3>
+<p>Generate the survey link as done in Part 1 of this process guide; however, use the values provided below and generate a QR code instead of copying the link.</p>
+<div class="figure-table"><div class="figure"><img src="images/eval-links/image1.png"  /></div><div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 64%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Field</strong></th>
+<th><strong>Value</strong></th>
+</tr></thead>
+<tbody><tr class="odd">
+<td><strong>Survey Type</strong></td>
+<td>Instructor Evaluations</td>
+</tr><tr class="header">
+<td><strong>Course</strong></td>
+<td>The course abbreviation (NCITS, NCITB, etc.)</td>
+</tr><tr class="odd">
+<td><strong>Version</strong></td>
+<td>This is used to indicate US or Canadian versions of the basic course and to distinguish between NCIT Workshops (DDI, IRSM, Communications, and Ethics)</td>
+</tr><tr class="header">
+<td><strong>Method</strong></td>
+<td>IPT-ILT</td>
+</tr><tr class="odd">
+<td><strong>Module Name</strong></td>
+<td>The module identifier (M01, M02, etc)</td>
+</tr><tr class="header">
+<td><strong>Instructor</strong></td>
+<td><p>Select the instructor’s name from the drop-down list provided.</p>
+<p><strong>Note:</strong> If an instructor’s name is not listed, contact <a href="mailto:avance@clearhq.org?subject=Edit%20Request%20to%20Module%20Eval%20Link%20Generator">avance@clearhq.org</a></p></td>
+</tr><tr class="odd">
+<td><strong>Cohort</strong></td>
+<td>Use TalentLMS Cohort Code (2026 05 NCIT B CAN Open)</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>Click the <strong>Copy QR</strong> button once you have populated the necessary fields.</p>
+<div class="callout note"><p>
+<tr class="header">
+<th><p><strong>Note:</strong> For each QR code, re-name the file with the cohort code plus the module or session identifier.</p>
+<blockquote>
+<p><strong>Example:</strong> 2026-04-NCIT-B-US-Austin-TX-M01</p>
+</blockquote>
+<p><strong>Note:</strong> for some programs there may be more than one instructor per module. In this scenario add the instructor’s initials to the end of the file name.</p>
+<blockquote>
+<p><strong>Example:</strong> 2026-04-ELPR-M01-DW and 2026-04-ELPR-M01-MS</p>
+</blockquote></p></div>
+<h3 id="step-2-add-the-survey-qr-code-to-the-powerpoint-slides">Step 2: Add the Survey QR Code to the PowerPoint Slides</h3>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>Locate the PowerPoint files for the program and cohort</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>In each PowerPoint file, locate the slides for the module reviews</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><p>Right-click on the QR code, select the <strong>Change Picture</strong> menu option, then select the <strong>This Device</strong> sub-menu option.</p>
+<p><img src="images/eval-links/image10.png"  /></p></td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td>Locate the appropriate QR code in the file explorer and click <strong>Save</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

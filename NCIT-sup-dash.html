@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCIT Supervisor Certification Review Tool – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>NCIT Supervisor Certification Review Tool</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#before-you-begin">Before You Begin</a></li><li><a href="#using-the-review-tool">Using the Review Tool</a></li><li><a href="#processing-a-certification-decision">Processing a Certification Decision</a></li><li><a href="#recording-your-decision-in-the-tool">Recording Your Decision in the Tool</a></li><li><a href="#exporting-results">Exporting Results</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#questions-support">Questions &amp; Support</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>The NCIT Supervisor Certification Review Tool is used by CLEAR Learning staff to review and process supervisor verification forms submitted by participants seeking NCIT Basic certification. This guide covers the full process from initial form review through verifying payment, confirming course completion, and issuing the certificate in TalentLMS.</p>
+<p><strong>Certification requires all four of the following to be confirmed before approval:</strong></p>
+<ul>
+<li><p>Attended a CLEAR NCIT Basic program and completed all required components</p></li>
+<li><p>Passed the NCIT Basic Final Exam (score ≥70%)</p></li>
+<li><p>Paid all required program fees in full</p></li>
+<li><p>Demonstrated a minimum of one cumulative year of experience in regulatory investigations</p></li>
+</ul>
+<div class="callout note"><p><strong>Note:</strong> The Supervisor Certification Review Tool now verifies all four requirements. Payment verification (requirement #3) and course completion with exam scores (requirements #1 and #2) are confirmed directly within the tool’s Payment &amp; Course Verification section. The NCIT Exam Report Generator is no longer required before processing a decision.</p></div>
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Before opening the review tool, ensure you have the following available:</p>
+<ul>
+<li><p><strong>Auth Token:</strong> Your CLEAR Learning worker auth token, stored in your browser after first use.</p></li>
+<li><p><strong>Novi Token:</strong> Your Novi AMS auth token. Enter it once in the Search &amp; Filter panel at the top of the page — it is saved in your browser and the tool connects to Novi automatically on every subsequent page load.</p></li>
+<li><p><strong>Internet connection:</strong> The tool makes live calls to TalentLMS and Novi AMS.</p></li>
+</ul>
+<p>All payment and course verification is handled within the tool. You no longer need to run the NCIT Exam Report Generator before processing a decision.</p>
+<h2 id="using-the-review-tool">Using the Review Tool</h2>
+<h3 id="searching-for-submissions">Searching for Submissions</h3>
+<p>The Search &amp; Filter panel also contains the Novi Auth Token field and Connect to Novi button. Enter your token once and it is saved — on subsequent visits the tool connects to Novi automatically when the page loads. A green confirmation message appears in the panel when the connection is active.</p>
+<p>The panel provides three search options and four filter options that can be combined:</p>
+<ul>
+<li><p><strong>Search By Program:</strong> Enter the program name, city, or partial date. Use this when processing a full cohort.</p></li>
+<li><p><strong>Search By Participant Name:</strong> Enter the participant’s first or last name for individual lookups.</p></li>
+<li><p><strong>Search By Current Agency:</strong> Enter the agency name to pull all submissions from a particular organization.</p></li>
+</ul>
+<p>Use the filter row below the search to narrow results by certification status, review date range, or experience status. Filters apply immediately and can be cleared with the Clear Filters button.</p>
+<h3 id="reading-the-results-table">Reading the Results Table</h3>
+<p>Each row in the results table shows a color-coded participant name indicating their experience eligibility:</p>
+<ul>
+<li><p><strong>Green background:</strong> Participant meets the one-year experience requirement.</p></li>
+<li><p><strong>Yellow background:</strong> Participant is within one month of meeting the requirement. Consider setting to Pending with a review date.</p></li>
+<li><p><strong>Red background:</strong> Participant does not currently meet the one-year requirement. Review the prior experience section in the detail panel before denying.</p></li>
+</ul>
+<p>Click any participant name to open the full detail panel. All columns are sortable by clicking the column header.</p>
+<h2 id="processing-a-certification-decision">Processing a Certification Decision</h2>
+<h3 id="step-1-open-the-detail-panel">Step 1: Open the Detail Panel</h3>
+<p>Click the participant’s name in the results table to open the full detail panel. Review all sections carefully:</p>
+<ul>
+<li><p>Confirm experience status shows green (or that the calculation accounts for prior agency experience correctly)</p></li>
+<li><p>Review supervisor name, agency, title, and contact information for completeness</p></li>
+<li><p>Confirm a signature is present by clicking the View link in the Signature field</p></li>
+<li><p>Note the program name and date — you will use this to locate the event in Novi</p></li>
+</ul>
+<h3 id="step-2-record-a-preliminary-decision-status">Step 2: Record a Preliminary Decision Status</h3>
+<p>In the Certification Decision section, you can record a preliminary status and notes while you complete verification. This is optional but useful for tracking your progress across a cohort:</p>
+<ul>
+<li><p>Set Status to Pending if you are waiting on payment or exam completion</p></li>
+<li><p>Add a Note explaining the current hold (e.g., “payment not yet received as of [date]”)</p></li>
+<li><p>Set a Review Date for follow-up if appropriate</p></li>
+<li><p>Save the decision at any point — you can update it again once all requirements are confirmed</p></li>
+</ul>
+<h3 id="step-3-verify-payment-and-course-completion">Step 3: Verify Payment and Course Completion</h3>
+<p>Scroll to the Payment &amp; Course Verification section within the detail panel. If Novi was already connected when the page loaded, the event search field is ready immediately — no connect step required.</p>
+<h4 id="select-the-event-and-pull-registrations">Select the Event and Pull Registrations</h4>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 38%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Locate the event</td>
+<td>The event search field auto-populates with the program date from the submission form. A matching event is selected automatically if exactly one match is found. If not, type the date (MM/DD/YYYY), program name, or category to filter the dropdown.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Select the correct event</td>
+<td>Click the event name in the dropdown to select it.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Click Pull Registrations</td>
+<td>The tool fetches all registrant records for the selected event. A count of registrants loaded is displayed when complete.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="search-for-the-participant">Search for the Participant</h4>
+<p>After registrations are loaded, a Participant Name search field appears, pre-filled with the participant’s name from the submission form.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 38%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Confirm or edit the name</td>
+<td>The field is pre-filled with the participant’s first and last name. Edit if needed (e.g., remove a suffix, try a maiden name).</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Click Search</td>
+<td>The tool searches both Novi registrations and TalentLMS simultaneously.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Review Novi payment result</td>
+<td>A payment badge appears below the search: ✓ Paid (green), ✗ Unpaid (red), or ? Unknown. If multiple Novi matches are found, click the correct registrant to confirm.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Review TalentLMS course completion</td>
+<td>The participant’s NCIT Basic courses load below the payment result as collapsible accordions. Each course shows completion status and percentage. Expand a course to see individual module statuses and exam scores.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Resolve multiple TalentLMS matches</td>
+<td>If more than one TalentLMS user matches the name, a list appears below the Novi result. Click the correct user to load their course data.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p><strong>Tip:</strong> If the participant is not found in Novi registrations, they may be registered under a different name or as an attendee under another person’s registration. Try searching by last name only, or check the Novi event directly. If not found in TalentLMS, try last name only or check the User Lookup Tool.</p></div>
+<h3 id="step-4-issue-the-certificate-or-record-a-denial">Step 4: Issue the Certificate or Record a Denial</h3>
+<p>Once payment and course completion are confirmed, scroll down within the Payment &amp; Course Verification section to the NCIT Course to Complete dropdown.</p>
+<h4 id="if-approving">If Approving</h4>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 38%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Select the NCIT course</td>
+<td>Choose the appropriate NCIT Basic course from the dropdown.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Click Open in Portal</td>
+<td>TalentLMS opens in a new tab showing the course users list.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Complete the course</td>
+<td>Locate the participant in the list and click Complete Course next to their name. This marks the course complete and triggers the certificate of completion.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Return to the review tool</td>
+<td>Save your Approved decision with your name and any notes.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="if-denying">If Denying</h4>
+<p>Record a Denied status in the Certification Decision section with notes explaining the reason. Use the suggested message text below to notify the participant via TalentLMS or email.</p>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Reason</strong></th>
+<th><strong>Suggested Message</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Failed Exam</strong></td>
+<td><em>Thank you for submitting your supervisor certification form for the NCIT Basic program. After reviewing your record, we are unable to process your certification at this time as our records indicate the NCIT Basic Final Exam has not yet been passed. Certification requires a score of 70% or higher. Please contact us at clearlearning@clearhq.org to discuss your options for completing or retaking the exam.</em></td>
+</tr>
+<tr class="even">
+<td><strong>Payment Outstanding</strong></td>
+<td><em>Thank you for submitting your supervisor certification form. Our records indicate an outstanding balance for your program registration. Certification cannot be processed until all fees are paid in full. Please contact us at clearlearning@clearhq.org to resolve your balance.</em></td>
+</tr>
+<tr class="odd">
+<td><strong>Insufficient Experience</strong></td>
+<td><em>Thank you for submitting your supervisor certification form. After reviewing the information provided, we are unable to verify that the one-year regulatory investigations experience requirement has been met at this time. If you believe this determination is in error or if additional documentation is available, please contact us at clearlearning@clearhq.org. You may resubmit once the experience requirement has been satisfied.</em></td>
+</tr>
+<tr class="even">
+<td><strong>Pending — Experience Nearly Met</strong></td>
+<td><em>Thank you for submitting your supervisor certification form. Your record is currently under review. Based on the hire date and experience information provided, it appears the one-year regulatory experience requirement will be met in the near future. We will follow up at that time. Please contact us at clearlearning@clearhq.org with any questions.</em></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="recording-your-decision-in-the-tool">Recording Your Decision in the Tool</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 38%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Select a status</td>
+<td>Choose Approved, Denied, or Pending from the Status dropdown.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Set a review date (if applicable)</td>
+<td>For Pending decisions, a review date is recommended. The tool auto-calculates the date the participant will meet the one-year requirement. Adjust as needed.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Select your name</td>
+<td>Choose your name from the Reviewed By dropdown. This field is required.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Enter notes</td>
+<td>Add relevant context — reason for denial, payment status, exam status, or follow-up needed.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Click Save Decision</td>
+<td>The decision is saved immediately. The table updates to reflect the new status.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Each save adds a new entry to the Decision History log. Previous decisions are never overwritten, providing a full audit trail.</p>
+<h2 id="exporting-results">Exporting Results</h2>
+<p>After running a search, an Export to Excel button appears in the results bar. Clicking it downloads a CSV file containing all currently displayed records including certification status, review date, reviewed by, and notes. Apply any filters before exporting to get the results you need.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Issue</strong></th>
+<th><strong>Resolution</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Submissions not loading</strong></td>
+<td>Check your internet connection and confirm the auth token is set correctly. Try refreshing the page.</td>
+</tr>
+<tr class="even">
+<td><strong>Novi Connect button stays stuck on “Connecting…”</strong></td>
+<td>Refresh the page and try again. The Connect to Novi button is in the Search &amp; Filter panel at the top of the page. If it continues to fail, verify your token is correct by testing it in the Exam Report Generator.</td>
+</tr>
+<tr class="odd">
+<td><strong>Novi events not loading after connect</strong></td>
+<td>Confirm your token is valid. The tool loads up to 200 events — use the date or name search to filter if needed.</td>
+</tr>
+<tr class="even">
+<td><strong>Participant not found in Novi registrations</strong></td>
+<td>Try searching by last name only. The participant may be registered under a slightly different name or as an attendee under another person’s registration. Check the Novi event directly if needed.</td>
+</tr>
+<tr class="odd">
+<td><strong>User not found in TalentLMS</strong></td>
+<td>Try searching by last name only. Remove suffixes (Jr., Sr., III). Use the User Lookup Tool to search TalentLMS directly.</td>
+</tr>
+<tr class="even">
+<td><strong>No NCIT Basic courses showing for user</strong></td>
+<td>The participant may not be enrolled in an NCIT Basic course. Verify enrollment in TalentLMS directly.</td>
+</tr>
+<tr class="odd">
+<td><strong>Save decision returns an error</strong></td>
+<td>Confirm the SUPERVISOR_CERT_STATUS KV namespace is bound in Cloudflare. Contact Amanda Vance if the error persists.</td>
+</tr>
+<tr class="even">
+<td><strong>Experience shows red but supervisor claims prior service</strong></td>
+<td>Open the detail panel and check the Prior Regulatory Experience section. If prior experience was not entered on the form, ask the supervisor to resubmit with those dates included.</td>
+</tr>
+<tr class="odd">
+<td><strong>Participant shows in wrong cohort</strong></td>
+<td>The participant may have been added to a different group in TalentLMS. Search for them by name in the User Lookup Tool.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="questions-support">Questions &amp; Support</h2>
+<p>For questions about this tool or process, contact:</p>
+<ul>
+<li><p><strong>Amanda Vance</strong> — Senior Instructional Designer, CLEAR Learning</p></li>
+<li><p>clearlearning@clearhq.org</p></li>
+</ul>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

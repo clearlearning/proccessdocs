@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status Report Generator – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Status Report Generator</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#before-you-begin">Before You Begin</a></li><li><a href="#process-guide">Process Guide</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>The Status Report Generator pulls student progress data from the CLEAR Learning Portal (TalentLMS) and creates individual, formatted status report emails for each student in a program cohort. These emails are sent automatically through the shared CLEAR Learning mailbox using Power Automate.</p>
+<p>Status report emails are generated at the midway point in each program and after the Program Review and Test Prep session. The midway point emails got to all attendees, the updates after the final session only go to those who have not completed the required modules.</p>
+<p>This tool also allows you to assign the appropriate final exam to all users who have completed the required modules for their program.</p>
+<p>This guide walks you through the full process from generating the reports to delivering them via SharePoint and Power Automate.</p>
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Make sure you have the following:</p>
+<ul>
+<li><p>Access to the CLEAR Learning Administrative Tools Dashboard</p></li>
+<li><p>Your CLEAR Learning Portal auth token (saved automatically after first use)</p></li>
+<li><p>The program name, assigned cohort, and end date for the cohort (date of the program review and test prep session)</p></li>
+<li><p>Access to the CLEAR Staff SharePoint site</p></li>
+</ul>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> If this is your first time using the tool, you will need the auth token provided by your administrator. After the first successful connection, the token is saved in your browser automatically.</p></div>
+<h2 id="process-guide">Process Guide</h2>
+<p><strong>Part 1: Generate the Status Reports</strong></p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>From the <strong>Administrative Tools Dashboard</strong>, click the <strong>Status Report Generator</strong> card to open the tool.</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>Select the appropriate course from the <strong>Course</strong> list.</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>In the <strong>Group (Cohort)</strong> field, select or type the <strong>cohort name</strong> as it appears in TalentLMS.</td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td>In the <strong>Program End Date</strong> field, enter the <strong>date of the program review and test prep session for the cohort.</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td>Review the auto-generated email text fields. These contain the standard language for status report emails.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout important"><p>
+<tr class="header">
+<th><strong>Important:</strong> Only edit the email text for one-off situations, most likely a closed or custom program. If you do edit, make sure that anything in curly brackets (<strong>{ }</strong>) is not changed. These are placeholders and will not work if modified.</p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>6</strong></td>
+<td>Click the <strong>Pull Student Progress Data</strong> button.</td>
+</tr>
+<tr class="even">
+<td><strong>7</strong></td>
+<td><p>Scroll down to review the module map. Remove the following non-required modules by unchecking them:</p>
+<ul>
+<li><p><strong>Basic US Program</strong>: Week 1 QA, Makeup Session header, and Program Review and Exam Information live session</p></li>
+<li><p><strong>Basic CAN Program</strong>: Pre-Recorded Live Sessions **Only required if you miss a live session** and Program Review &amp; Final Exam Information - Live Session</p></li>
+<li><p><strong>Specialized Program</strong>: Recordings of Live Sessions **Only required if you miss a live session** and Live Session – Program Review &amp; Test Prep</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p><strong>Note:</strong> These modules appear due to naming conventions and system limitations in TalentLMS. They are not required program elements and should not appear on student status reports.</p></div><div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 9%" />
+<col style="width: 89%" />
+</colgroup>
+<thead><tr class="odd">
+<th colspan="2"><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td colspan="2"><strong>8</strong></td>
+<td><p>Click <strong>Generate Report &amp; Preview</strong>. Review the cohort progress data. You can:</p>
+<ul>
+<li><p>Click on an <strong>individual’s name</strong> to preview their specific email</p></li>
+<li><p>Click the <strong>Email Preview</strong> button to verify email content before exporting</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Part 2: Send Status Report Emails</strong></p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>9</strong></td>
+<td>Review the rows and de-select any that you wish to exclude from the email updates</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><p><strong>Note:</strong> When sending the midway status update, remove any rows belonging to <strong>CLEAR Staff</strong> and the <strong>CLEAR Learning account</strong>.</p>
+<p>When sending the end of programming status update, <strong>de-select</strong> all users then review the list and <strong>re-select</strong> only those with a <strong>Progress</strong> status of <strong>In Progress</strong>.</p></p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>10</strong></td>
+<td>Click the <strong>Export Emails for Power Automate</strong> button. This will download a zip folder to your computer.</td>
+</tr>
+<tr class="even">
+<td><strong>11</strong></td>
+<td>Navigate to your <strong>Downloads</strong> folder in <strong>File Explorer</strong> and locate the status report emails zip file. Right-click and select <strong>Extract All</strong>. Choose a destination and extract the files.</td>
+</tr>
+<tr class="odd">
+<td><strong>12</strong></td>
+<td>Open the <strong>extracted folder</strong>. Select all files with an <strong>.html</strong> extension.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout important"><p>
+<tr class="header">
+<th><strong>Important:</strong> Do <strong>NOT</strong> select the file with the <strong>.json</strong> extension. Only select the HTML files.</p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>13</strong></td>
+<td>Open your browser and navigate to the CLEAR Staff SharePoint site. Go to: <strong>CLEAR Shared</strong> &gt; <strong>CLEAR Learning Facilitation</strong> &gt; <strong>Status Report Emails</strong> &gt; <strong>Outbox</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p>
+<tr class="header">
+<th><strong>Tip:</strong> Access SharePoint through your browser rather than File Explorer to ensure files upload properly.</p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>14</strong></td>
+<td>Drag and drop the selected <strong>HTML files</strong> from <strong>File Explorer</strong> into the <strong>Outbox</strong> folder in <strong>SharePoint</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>15</strong></td>
+<td>The <strong>Power Automate</strong> process flow will automatically send each email to the address listed in the file name. Emails are sent from the <strong>CLEAR Learning shared mailbox</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p>
+<tr class="header">
+<th><strong>Tip:</strong> To verify that emails were sent, either check the <strong>Sent</strong> folder in the <strong>CLEAR Learning mailbox</strong> or navigate to the <strong>Status Report Emails &gt; Sent</strong> folder in SharePoint for a record of all processed files.</p></div>
+<p><strong>Part 3: Assign the Final Exam to a Cohort</strong></p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>16</strong></td>
+<td>Complete the standard <strong>Status Report Generator</strong> process: select the course and cohort (see the Status Report Generator Process Guide, Steps 1–8).</td>
+</tr>
+<tr class="even">
+<td><strong>17</strong></td>
+<td>Instead of exporting emails, scroll to the bottom of the page and locate the <strong>Final Exam Course</strong> field.</td>
+</tr>
+<tr class="odd">
+<td><strong>18</strong></td>
+<td>Click in the field, select all the existing text, and delete it. Type <strong>final exam</strong> to filter the options, then select the appropriate final exam course from the list.</td>
+</tr>
+<tr class="even">
+<td><strong>19</strong></td>
+<td>Click the <strong>Assign Final Exam</strong> button. All cohort members will be added to the selected final exam course in TalentLMS.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><p><strong>Note:</strong> Only attendees who have reached 100% completion of the required modules will be assigned to the final exam. Do not de-select attendees who have not completed the program before assigning the test.</p>
+<p>Repeat this process to assign the exam to attendees who finished program requirements late.</p></p></div>
+<div class="callout tip"><p>
+<tr class="header">
+<th><strong>Tip:</strong> When the final exam is assigned, TalentLMS will automatically trigger an email notification to each cohort member with instructions on how to take the exam.</p></div>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

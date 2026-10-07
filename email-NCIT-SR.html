@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCIT Standard Release Status Report Tool – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>NCIT Standard Release Status Report Tool</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#purpose">Purpose</a></li><li><a href="#when-to-use-this-tool">When to Use This Tool</a></li><li><a href="#supported-programs">Supported Programs</a></li><li><a href="#step-by-step-process">Step-by-Step Process</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="purpose">Purpose</h2>
+<p>The NCIT Standard Release Status Report Tool is a browser-based administrative tool that allows CLEAR Learning staff to quickly look up any NCIT cohort, check which learners have completed their program's Standard Release, and generate personalized reminder emails for those who have not. It connects directly to TalentLMS via the CLEAR Learning API proxy and exports email files ready for the Power Automate send process.</p>
+<h2 id="when-to-use-this-tool">When to Use This Tool</h2>
+<p>Use this tool when:</p>
+<ul>
+<li><p>An NCIT in-person or online program session is approaching and you need to verify that all enrolled learners have completed the Standard Release.</p></li>
+<li><p>You need a quick at-a-glance checklist for check-in staff showing which attendees still need to complete the Standard Release on arrival.</p></li>
+<li><p>You need to send individual reminder emails to learners who have not yet completed the Standard Release.</p></li>
+<li><p>You need a CSV export of cohort Standard Release status for your records.</p></li>
+</ul>
+<h2 id="supported-programs">Supported Programs</h2>
+<p>The tool supports the following five NCIT programs. Each is linked to its specific Standard Release course and test unit in TalentLMS.</p>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 12%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Program</strong></th>
+<th><strong>Course ID</strong></th>
+<th><strong>Standard Release Name</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NCIT Basic In-Person Program</td>
+<td>161</td>
+<td>NCIT Basic In-Person Program - Standard Release</td>
+</tr>
+<tr class="even">
+<td>NCIT Specialized In-Person Program</td>
+<td>162</td>
+<td>NCIT Specialized In-Person Program - Standard Release</td>
+</tr>
+<tr class="odd">
+<td>NCIT AIT In-Person Program</td>
+<td>181</td>
+<td>NCIT AIT In-Person Program - Standard Release</td>
+</tr>
+<tr class="even">
+<td>NCIT Specialized Online Program</td>
+<td>148</td>
+<td>NCIT Specialized Online Program - Standard Release</td>
+</tr>
+<tr class="odd">
+<td>NCIT Basic Online Program</td>
+<td>127</td>
+<td>NCIT Basic Online Program - Standard Release</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="step-by-step-process">Step-by-Step Process</h2>
+<h3 id="part-1-access-the-tool">Part 1: Access the Tool</h3>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Go to the CLEAR Learning Administrative Tools dashboard.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Locate the NCIT Standard Release Status Report card in the Program Management section and click it to open the tool.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Verify the API connection indicator at the top of the tool shows green / Connected. If it shows red or disconnected, enter your Auth Token and click Test Connection.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p><strong>Note</strong></p>
+<p>The tool auto-connects using your saved credentials from previous sessions. If this is your first time using the tool, you will need to enter the Auth Token once — it is saved for future use.</p></div>
+<h3 id="part-2-select-the-program-and-cohort">Part 2: Select the Program and Cohort</h3>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><p>In the <strong>Program</strong> dropdown, select the appropriate program from the list. The five options are:</p>
+<ul>
+<li><p>NCIT Basic In-Person Program</p></li>
+<li><p>NCIT Specialized In-Person Program</p></li>
+<li><p>NCIT AIT In-Person Program</p></li>
+<li><p>NCIT Specialized Online Program</p></li>
+<li><p>NCIT Basic Online Program</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>In the <strong>Cohort / Group</strong> field, type to filter for the appropriate group and select it from the dropdown list.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>A confirmation banner will appear showing the Standard Release course and test unit that will be checked for the selected program.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Click the <strong>Load Cohort Data</strong> button.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-3-review-the-cohort-report">Part 3: Review the Cohort Report</h3>
+<p>Once the data loads, the Cohort Report section will appear with the following information:</p>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Element</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Total Learners</strong></td>
+<td>The total number of learners enrolled in the selected cohort.</td>
+</tr>
+<tr class="even">
+<td><strong>SR Completed</strong></td>
+<td>The number of learners who have completed the Standard Release test.</td>
+</tr>
+<tr class="odd">
+<td><strong>Not Completed</strong></td>
+<td>The number of learners who have not yet completed the Standard Release test.</td>
+</tr>
+<tr class="even">
+<td><strong>Completion Rate</strong></td>
+<td>The percentage of active (included) learners who have completed the Standard Release.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Below the summary cards are three tabs:</p>
+<ul>
+<li><p><strong>All Learners</strong> — complete list of all cohort members.</p></li>
+<li><p><strong>Incomplete / Not Started</strong> — learners who have not completed the Standard Release test.</p></li>
+<li><p><strong>Completed</strong> — learners who have completed the Standard Release test.</p></li>
+</ul>
+<h3 id="part-4-exclude-demo-accounts-or-dropped-learners">Part 4: Exclude Demo Accounts or Dropped Learners</h3>
+<p>If the cohort contains demo accounts, test users, or learners who have dropped out but remain in the TalentLMS group, you can exclude them from the report and email generation without deleting them from the system.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>To exclude individual learners, uncheck the checkbox in the leftmost column next to their name in any tab.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>To exclude an entire tab's worth of learners at once, uncheck the <strong>select-all checkbox</strong> in the table header.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Excluded learners appear with strikethrough formatting and are removed from the summary counts and from all exports. An <strong>Excluded</strong> count will appear in the summary cards.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>To re-include a learner, simply check their checkbox again. Excluded learners remain visible in all tabs so they can always be restored.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p><strong>Tip — Quick workflow for email generation</strong></p>
+<p>To generate emails only for incomplete learners: go to the Completed tab, uncheck the select-all checkbox to exclude everyone who has already finished. Then proceed to the export section. Only incomplete active learners will receive an email.</p></div>
+<h3 id="part-5-generate-and-export-reminder-emails">Part 5: Generate and Export Reminder Emails</h3>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Scroll down to the <strong>Generate Standard Release Reminder Emails</strong> section.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Enter the <strong>Program Start Date</strong> in the format: <strong>Month Day, Year</strong> (e.g., May 4, 2026). The <strong>Deadline Preview</strong> field will automatically update to show the deadline language that will appear in each email: <strong>prior to checking in on [date]</strong>.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Click <strong>Export Reminder Emails (ZIP)</strong>. A ZIP file will download containing one individual HTML email file per non-completed, included learner.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Optionally, click <strong>Export CSV</strong> to download a spreadsheet listing all cohort members and their Standard Release status. This is useful as a check-in reference for in-person programs.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p><strong>Note</strong></p>
+<p>Each email file is named StandardRelease_email@domain.com.html. The file name is what the Power Automate process uses to identify the recipient — do not rename the files.</p></div>
+<h3 id="part-6-upload-files-to-sharepoint-for-power-automate">Part 6: Upload Files to SharePoint for Power Automate</h3>
+<p>Once the ZIP file has been downloaded, follow these steps to trigger the automated email send process.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Locate the downloaded ZIP file and extract all files from it.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Open a web browser and navigate to the CLEAR Shared SharePoint site. Use the web browser version of SharePoint — do not use File Explorer or the desktop sync folder, as this can cause upload issues.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Navigate to: <strong>CLEAR Shared</strong> → <strong>CLEAR Learning Facilitation</strong> → <strong>Status Report Emails</strong> → <strong>Standard Release</strong>.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Upload all HTML files from the extracted ZIP folder into this SharePoint folder.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Power Automate will detect the new files and automatically send each email to the corresponding learner from the CLEAR Learning mailbox.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>To confirm delivery, check the <strong>Sent</strong> folder in the CLEAR Learning mailbox.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout important"><p><strong>Important</strong></p>
+<p>Always upload files using the SharePoint web browser interface to ensure the Power Automate trigger fires correctly. Files dragged in via File Explorer or the synced desktop folder may not trigger the automation.</p></div>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novi Bulk Registration Import – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Novi Bulk Registration Import</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#purpose">Purpose</a></li><li><a href="#before-you-start">Before You Start</a></li><li><a href="#process-guide">Process Guide</a></li><li><a href="#understanding-the-purchaser-field">Understanding the Purchaser Field</a></li><li><a href="#understanding-membership-status-ticket-restrictions">Understanding Membership Status &amp; Ticket Restrictions</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#important-reminders">Important Reminders</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<div class="callout important"><p><strong>INTERNAL USE ONLY — CLEAR Staff</strong></p></div>
+<h2 id="purpose"><strong>Purpose</strong></h2>
+<p>This tool lets CLEAR staff register a whole group of people for a NOVI event at once, by uploading a spreadsheet of names and email addresses instead of entering each person individually in NOVI. Use it any time you need to register more than a handful of people for the same event — conference attendees, a workshop group, a committee, and so on.</p>
+<p>The tool will, for each person in your list:</p>
+<ul>
+<li><p>Check whether they already have a member record in NOVI, and link the registration to it if so.</p></li>
+<li><p>Optionally create a new record in NOVI for people who don’t already have one — either as a Non-Member, or as a full Member (standalone or inheriting membership from a parent company).</p></li>
+<li><p>Register them for the event under the correct ticket type, at that ticket’s real price.</p></li>
+<li><p>Show you a clear pass/fail result for every person, so nothing silently fails.</p></li>
+</ul>
+<div class="callout important"><p>
+<tr class="header">
+<th><p><strong>IMPORTANT</strong></p>
+<p>This tool writes directly to CLEAR’s live NOVI database. Registrations, new member records, and the resulting ticket charges are real and immediate. Always review the preview table carefully before clicking Import.</p></p></div>
+<h2 id="before-you-start"><strong>Before You Start</strong></h2>
+<p>Have these things ready before you open the tool:</p>
+<ul>
+<li><p>Your Worker Auth Token — in 1Password, search “Auth Token” and copy the password.</p></li>
+<li><p>The Event’s Unique ID (a GUID) from NOVI.</p></li>
+<li><p>The Ticket UniqueID (a GUID) for every ticket type on the event — e.g. Member Rate, Non-Member Rate.</p></li>
+<li><p>Your list of registrants, at minimum their email addresses. First Name, Last Name, Company, and Phone are strongly recommended — without them, matching and record creation are limited.</p></li>
+<li><p>If any registrants are joining as new members under a parent organization, the Parent Company’s NOVI GUID for each one.</p></li>
+</ul>
+<h2 id="process-guide"><strong>Process Guide</strong></h2>
+<h3 id="step-1-connection"><strong>Step 1: Connection</strong></h3>
+<p>This section connects the tool to CLEAR’s NOVI system. You shouldn’t need to change the Worker Base URL — it’s pre-filled.</p>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Field</strong></th>
+<th><strong>What To Enter</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Worker Base URL</td>
+<td>https://clear-lms-proxy.avance.workers.dev</td>
+</tr>
+<tr class="even">
+<td>Auth Token</td>
+<td>In 1Password, search “Auth Token,” copy the password, and paste it here. This token authorizes every action the tool takes for the rest of your session.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="step-2-event-ticket-types"><strong>Step 2: Event &amp; Ticket Types</strong></h3>
+<p>This tells the tool which NOVI event to register people for, and which tickets are available — including their real prices and whether they’re restricted to members.</p>
+<p><strong>Finding the Event Unique ID</strong></p>
+<p>In NOVI:</p>
+<ol type="1">
+<li><p>Navigate to the Event</p></li>
+<li><p>Click the Settings tab header</p></li>
+<li><p>Scroll down to the bottom of the page to Event API Info section</p></li>
+<li><p>Copy the UniqueID value.</p></li>
+<li><p>Paste it into the Event Unique ID field.</p></li>
+</ol>
+<p><strong>Finding the Ticket Unique IDs</strong></p>
+<p>In the NOVI event, for each ticket to be used in the import:</p>
+<ol type="1">
+<li><p>Click the Tickets tab header</p></li>
+<li><p>Select the ticket</p></li>
+<li><p>Scroll to the bottom of the pop up and the Advanced section</p></li>
+<li><p>Copy the API UniqueID value.</p></li>
+<li><p>Paste it into the TicketUniqueID GUID field</p></li>
+</ol>
+<p>Click “+ Add Ticket Type” for each additional ticket the event offers (e.g. Member Rate, Non-Member Rate), and paste the matching GUID into each row. As soon as you enter a GUID, the tool fetches that ticket’s real price from NOVI and shows it under the row — confirm the price shown matches what you expect before moving on.</p>
+<div class="callout tip"><p>
+<tr class="header">
+<th><p><strong>TIP</strong></p>
+<p>The <strong>Label</strong> you type here must exactly match the <strong>TicketType</strong> column value in your <strong>CSV Template</strong> file, if you’re using that column. If it doesn’t match, or if you leave the CSV column blank, you’ll assign ticket types manually in Step 4 instead.</p></p></div>
+<p><strong>The "Member Only" Checkbox</strong></p>
+<p>Check this box on any ticket type that should only ever go to an actual member. Once checked, the tool will refuse to import anyone assigned that ticket unless they’re a confirmed member or inheriting member (see “Understanding Membership Status” below).</p>
+<h3 id="step-3-upload-registrant-list"><strong>Step 3: Upload Registrant List</strong></h3>
+<p>Click “Download CSV Template” to get a starter spreadsheet with the correct column headers, fill it in, save it, and upload it here. The only required column is Email — rows without one are skipped entirely, but without First Name, Last Name, Company, and Phone, matching and record creation are limited.</p>
+<p><strong>CSV Columns</strong></p>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 15%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Column</strong></th>
+<th><strong>Required?</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FirstName</td>
+<td>No</td>
+<td>Required if you plan to create a new record for this person — NOVI won’t create a record without a name.</td>
+</tr>
+<tr class="even">
+<td>LastName</td>
+<td>No</td>
+<td>Same as above.</td>
+</tr>
+<tr class="odd">
+<td>Email</td>
+<td>Yes</td>
+<td>The only truly required column. Rows without an email are skipped entirely.</td>
+</tr>
+<tr class="even">
+<td>CompanyName</td>
+<td>No</td>
+<td>Shown on the attendee record if provided.</td>
+</tr>
+<tr class="odd">
+<td>Phone</td>
+<td>No</td>
+<td>Shown on the attendee record if provided.</td>
+</tr>
+<tr class="even">
+<td>TicketType</td>
+<td>No</td>
+<td>Must exactly match a Label you entered in Step 2. If blank or unmatched, assign it manually in the preview table.</td>
+</tr>
+<tr class="odd">
+<td>Purchaser</td>
+<td>No</td>
+<td>Pull the Unique ID for the purchasing user from NOVI (if other than the registrant.)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Any missing information can also be typed in directly on the preview screen after upload — you don’t have to get the CSV perfect before uploading.</p>
+<h3 id="step-4-preview-assign-ticket-types"><strong>Step 4: Preview &amp; Assign Ticket Types</strong></h3>
+<p>This is the main working screen. Every row from your CSV appears here, and First Name, Last Name, Company, and Phone are all editable directly in the table — click into any cell to correct or fill in a value at any time.</p>
+<p><strong>Bulk-assign ticket type to selected rows:</strong> If you didn’t include the ticket type in the upload, you have the chance to do it here. Select any rows you wish to assign to a ticket, select the ticket from the drop down menu and click the Apply to Selected button next to that menu.</p>
+<p><strong>Bulk-assign purchaser to selected rows:</strong> just as with the section above, you can assign the purchaser to all selected rows here. Copy the GUID from the Purchaser’s record in NOVI and enter it here then click the second Apply to Selected button. This is an <strong>optional</strong> step. If the purchaser field is left blank, it will <strong>default</strong> to the <strong>registrant</strong>.</p>
+<p><strong>Matching to Existing Members</strong></p>
+<p>Click the <strong>Match to Existing Members</strong> button. The tool checks each row’s email against NOVI directly and reports back one of the following in the <strong>Member Match</strong> column:</p>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>What You’ll See</strong></th>
+<th><strong>What It Means</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Member: [Name]</td>
+<td>This person already has a NOVI record. Their registration will link to it automatically.</td>
+</tr>
+<tr class="even">
+<td>New Guest</td>
+<td>No matching record was found. You can leave them as a guest or select the <strong>create record</strong> checkbox to add them as a Non-Member or Member (see Step 4b).</td>
+</tr>
+<tr class="odd">
+<td>Lookup failed</td>
+<td>The check itself hit an error (not the same as “not found”). Click “retry” next to the badge rather than assuming they’re not a member.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Matching runs in small batches with brief pauses between them to respect NOVI’s rate limit — for a large list, let it finish running before moving on.</p>
+<h3 id="step-4b-assign-membership-status-for-unmatched-rows"><strong>Step 4b: Assign Membership Status for Unmatched Rows</strong></h3>
+<p>This section only appears when at least one row came back “New Guest.” Use it when you want people who aren’t currently in NOVI to have a real record, rather than registering them as a one-off guest. Checking “create record” on a row expands a set of fields directly beneath that person.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>What To Do</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Make sure <strong>First Name</strong> and <strong>Last Name</strong> are filled in for anyone you plan to create a record for — NOVI requires a name.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Click <strong>Select All Unmatched</strong> (or check individual rows’ “create record” boxes) to expand their membership fields.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>For each expanded row, choose Membership Status: Non-Member (default) or Member.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>If Member</strong>: choose either a Member Type (for a standalone member) or a Parent Company GUID (for someone inheriting membership from an organization) — <strong>never both</strong>. Click <strong>Load Member Types</strong> first if the dropdown is empty.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Click <strong>Create Selected Records</strong>.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Confirm each row now shows “New Non-Member: [Name]” or “New Member: [Name]” before moving on to Import.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p>
+<tr class="header">
+<th><p><strong>TIP</strong></p>
+<p><strong>Member Type</strong> and <strong>Parent Company GUID</strong> are mutually exclusive. If this person is <strong>inheriting</strong> membership from a company, <strong>leave Member Type blank</strong> and <strong>fill in the Parent Company GUID</strong> instead — NOVI computes their membership from the parent link, not from a type on their own record.</p>
+<p>The <strong>Member Type</strong> dropdown only shows types valid for an individual; company-only types are hidden automatically.</p></p></div>
+<h3 id="step-5-import"><strong>Step 5: Import</strong></h3>
+<p>Once every row has a ticket type assigned (and you’ve reviewed the Member Match column), click “Import Selected Registrants.”</p>
+<ul>
+<li><p>A progress bar and status column show real-time pass/fail for each person as the import runs.</p></li>
+<li><p>If a Member Only ticket is assigned to someone who isn’t an eligible member, the import is blocked before anything is sent, with the affected names listed — fix their ticket or membership status and try again.</p></li>
+<li><p>Each registration is charged at the ticket’s real price (fetched in Step 2) and marked Unpaid, so it shows in NOVI as an open balance rather than a completed payment.</p></li>
+<li><p>If anyone fails, use <strong>Retry Failed Rows</strong> to try them again without re-running the whole batch.</p></li>
+<li><p><strong>Export Failed Rows to CSV</strong> downloads just the failures, with the error message included, so you can review or hand them off.</p></li>
+</ul>
+<h2 id="understanding-the-purchaser-field"><strong>Understanding the Purchaser Field</strong></h2>
+<p>In NOVI, every registration has a Purchaser — the record considered to have registered/paid for the attendee — separate from the Attendee themselves.</p>
+<p>Leave the Purchaser field blank and the tool will automatically use the attendee’s own matched (or newly created) member record as the purchaser.</p>
+<p>Only fill it in when someone else, such as the parent member, should be the purchaser of record instead of the attendee. You can enter either:</p>
+<ul>
+<li><p>An email address — the tool looks it up in NOVI the same way it matches attendees.</p></li>
+<li><p><strong>A NOVI UniqueID (GUID) directly, if you already have it — this skips the lookup and applies instantly. (preferred)</strong></p></li>
+</ul>
+<p>If you have many people all purchased by the same person, use the “Bulk-assign purchaser to selected rows” field in Step 4 rather than typing it into every row — select the rows, enter the purchaser’s email or GUID once, and click <strong>Apply to Selected</strong>.</p>
+<h2 id="understanding-membership-status-ticket-restrictions"><strong>Understanding Membership Status &amp; Ticket Restrictions</strong></h2>
+<p>This section covers the difference between the two ways a new record can join NOVI, and how the tool decides who’s allowed to use a Member Only ticket.</p>
+<p><strong>Standalone Member vs. Inheriting Member</strong></p>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Situation</strong></th>
+<th><strong>What To Do</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standalone Member</td>
+<td>This person has their own individual membership. Select a Member Type from the dropdown and leave the Parent Company GUID blank.</td>
+</tr>
+<tr class="even">
+<td>Inheriting Member</td>
+<td>This person’s membership comes from a parent. Leave Member Type blank and enter the Parent Company’s GUID instead. NOVI computes their membership status from that link automatically.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Who Qualifies for a Member Only Ticket</strong></p>
+<p>When a ticket is flagged Member Only in Step 2, the tool checks each assigned row before allowing import:</p>
+<ul>
+<li><p>A matched existing record qualifies only if NOVI reports their status as an active member or an inheriting member — simply having a NOVI record is not enough, since NOVI tracks Non-Members and Prospects in the same members table.</p></li>
+<li><p>A newly created record qualifies only if you set its Membership Status to Member (with a type or parent company) during Step 4b — a newly created Non-Member does not qualify.</p></li>
+<li><p>A row with no record at all (a plain guest) never qualifies.</p></li>
+</ul>
+<div class="callout tip"><p>
+<tr class="header">
+<th><p><strong>TIP</strong></p>
+<p>If someone with a legitimate membership is unexpectedly blocked from a Member Only ticket, their NOVI status may use a value the tool doesn’t yet recognize as eligible. Note their name and status and flag it — don’t work around the block by unchecking Member Only on the ticket, since that would remove the protection for everyone else on the list too.</p></p></div>
+<h2 id="troubleshooting"><strong>Troubleshooting</strong></h2>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>If You See…</strong></th>
+<th><strong>What To Do</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Lookup failed” badge</td>
+<td>The membership check itself hit an error — it does not mean the person isn’t a member. Click “retry” on that row.</td>
+</tr>
+<tr class="even">
+<td>“Row(s) don’t have a ticket type assigned”</td>
+<td>Every selected row needs a ticket type before you can import. Use the bulk-assign dropdown, or set each row individually.</td>
+</tr>
+<tr class="odd">
+<td>“Missing a First or Last Name” when creating records</td>
+<td>NOVI requires a name to create a member record. Click into the First Name / Last Name cells for that row and fill them in, then try again.</td>
+</tr>
+<tr class="even">
+<td>“Member Type… don’t have a Member Type chosen”</td>
+<td>A row with no existing record is set to Member with no Parent Company GUID and no Member Type selected. Pick a type for a standalone member, or fill in the Parent Company GUID instead if they’re inheriting.</td>
+</tr>
+<tr class="odd">
+<td>Import blocked for a Member Only ticket</td>
+<td>One or more selected rows aren’t confirmed members. Either change their ticket type, or go back to Step 4b and correctly match or create them as a Member before retrying.</td>
+</tr>
+<tr class="even">
+<td>A row fails during import with an error message</td>
+<td>Hover the “Failed” badge to see NOVI’s exact error message. Common causes are a missing ticket type or an invalid email format. Fix the row and use “Retry Failed Rows.”</td>
+</tr>
+<tr class="odd">
+<td>Ticket price shows “price lookup failed”</td>
+<td>The tool couldn’t fetch that ticket’s price from NOVI. Double check the GUID is correct, then re-enter it to retry — import is blocked from using that ticket type until this resolves.</td>
+</tr>
+<tr class="even">
+<td>Import seems slow for a large list</td>
+<td>This is expected — the tool paces itself to respect NOVI’s rate limits so requests don’t get rejected. Let it finish rather than refreshing the page.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="important-reminders"><strong>Important Reminders</strong></h2>
+<ul>
+<li><p>This tool is for internal CLEAR staff use only.</p></li>
+<li><p>Registrations and any records created — Non-Member or Member — are written directly and immediately to NOVI. There is no draft or undo step.</p></li>
+<li><p>Each registration is charged at the ticket’s real price and marked Unpaid, showing as an open balance in NOVI — it does not mark anything as already paid.</p></li>
+<li><p>Member Only tickets are enforced automatically based on NOVI’s own membership status — don’t disable that check to work around a blocked row.</p></li>
+<li><p>When in doubt about whether to create a record for someone, or what Membership Status to give them, leave it unchecked and ask a supervisor — registering as a guest can be revisited later, but a created record is a permanent database change.</p></li>
+</ul>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendee Questionnaire Survey Reports – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Attendee Questionnaire Survey Reports</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#step-by-step-instructions">Step-by-Step Instructions</a></li><li><a href="#how-instructors-use-this-report">How Instructors Use This Report</a></li><li><a href="#tips-troubleshooting">Tips &amp; Troubleshooting</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>This process covers how to pull the attendee questionnaire survey report from TalentLMS for the following programs:</p>
+<ul>
+<li><p>Executive Leadership Program for Regulators (ELPR) — both in-person and virtual</p></li>
+<li><p>Advanced Concepts in Regulatory Governance (ACRG) — virtual</p></li>
+</ul>
+<p>The questionnaire collects information from participants about their learning goals and professional background before the program begins. Pulling and distributing this report to instructors allows them to tailor the program content to the specific needs of each cohort.</p>
+<div class="callout neutral"><p>
+<tr class="header">
+<th><p><strong>When to run this report</strong></p>
+<p>Pull the questionnaire report after the pre-work deadline has passed and before the first live session. This ensures the instructors have responses from as many participants as possible before the program begins.</p></p></div>
+<h2 id="step-by-step-instructions">Step-by-Step Instructions</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 93%" />
+</colgroup>
+<tbody><tr class="odd">
+<td><strong>1</strong></td>
+<td><p><strong>Log in and switch to the Instructor role</strong></p>
+<p>Log in to TalentLMS. Once logged in, switch to the Instructor role using the role switcher at the top of the screen if you are not already in that role.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td><p><strong>Navigate to the course</strong></p>
+<p>From the Instructor dashboard, locate and click on the course you are pulling the report for — for example, Executive Leadership Program for Regulators In-Person Training or Advanced Concepts in Regulatory Governance.</p></td>
+</tr>
+<tr class="even">
+<td><strong>3</strong></td>
+<td><p><strong>Open the Reports menu</strong></p>
+<p>Inside the course, click on the Reports menu. This is typically found in the course navigation bar.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>4</strong></td>
+<td><p><strong>Go to the Surveys tab</strong></p>
+<p>Within the Reports section, click on the Surveys tab at the top of the page. This will display a list of all surveys associated with the course.</p></td>
+</tr>
+<tr class="even">
+<td><strong>5</strong></td>
+<td><p><strong>Open the report for the Questionnaire survey</strong></p>
+<p>Locate the Questionnaire survey in the list. Under the Options column on the right side of the row, click the Reports icon (it looks like a bar chart or graph icon) to open the survey results.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>6</strong></td>
+<td><p><strong>Filter by cohort</strong></p>
+<p>Scroll to the bottom of the results list and click the Filter icon. In the filter options, search for the specific cohort you are pulling the report for. Select the cohort to apply the filter so that only responses from that cohort are shown.</p></td>
+</tr>
+<tr class="even">
+<td><strong>7</strong></td>
+<td><p><strong>Export the report</strong></p>
+<p>Once the cohort filter is applied, click the Export to Excel button at the top of the page. The report will download as an Excel file to your computer.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>8</strong></td>
+<td><p><strong>Verify the Details tab</strong></p>
+<p>Navigate to the Details tab within the Excel workbook. Confirm that all participants listed are members of the correct cohort.</p></td>
+</tr>
+<tr class="even">
+<td><strong>9</strong></td>
+<td><p><strong>Email the report to instructors</strong></p>
+<p>Once you have confirmed the data is correct, email the Excel file to all instructors for the program. Include a note that this report contains participant questionnaire responses for the upcoming cohort and that they should review it to tailor the program to participants' learning goals.</p></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="how-instructors-use-this-report">How Instructors Use This Report</h2>
+<p>Instructors will review the questionnaire responses to understand who is in the cohort and what participants hope to get out of the program. This helps them:</p>
+<ul>
+<li><p>Adjust the focus or emphasis of sessions to address common themes in participant goals</p></li>
+<li><p>Prepare relevant examples and case studies based on participants' regulatory backgrounds</p></li>
+<li><p>Identify any participants who may need additional support or have unique circumstances</p></li>
+<li><p>Make the program feel more relevant and personalized to each cohort</p></li>
+</ul>
+<p>Instructors do not need access to TalentLMS to view this information — the Excel file you send contains everything they need.</p>
+<h2 id="tips-troubleshooting">Tips &amp; Troubleshooting</h2>
+<h3 id="the-cohort-does-not-appear-in-the-filter">The cohort does not appear in the filter</h3>
+<p>Only cohorts that you are a member of will be found in the filter. The best way to avoid this issue is to login to the CLEAR Learning account.</p>
+<h3 id="the-details-tab-shows-unexpected-names">The Details tab shows unexpected names</h3>
+<p>If the Details tab includes participants from a different cohort or missing expected participants, do not send the report. Re-apply the cohort filter and re-export. If the problem continues, contact Amanda Vance.</p>
+<h3 id="no-responses-appear-after-filtering">No responses appear after filtering</h3>
+<p>If the report shows no responses after applying the cohort filter, participants may not have completed the questionnaire yet. Check the pre-work completion status in TalentLMS. If the deadline has passed and responses are still missing, follow up with participants directly before sending the report to instructors.</p>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

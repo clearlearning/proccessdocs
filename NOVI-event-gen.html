@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Using the Novi Event Creator Tool – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Using the Novi Event Creator Tool</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#before-you-begin">Before You Begin</a></li><li><a href="#part-1-select-your-program-and-enter-cohort-details">Part 1: Select Your Program and Enter Cohort Details</a></li><li><a href="#part-2-date-time-and-location">Part 2: Date, Time, and Location</a></li><li><a href="#part-3-review-and-edit-event-descriptions">Part 3: Review and Edit Event Descriptions</a></li><li><a href="#part-4-review-ticket-pricing">Part 4: Review Ticket Pricing</a></li><li><a href="#part-5-create-the-event">Part 5: Create the Event</a></li><li><a href="#part-6-complete-the-post-creation-checklist">Part 6: Complete the Post-Creation Checklist</a></li><li><a href="#details-tab">Details Tab</a></li><li><a href="#tickets-tab">Tickets Tab</a></li><li><a href="#settings-tab">Settings Tab</a></li><li><a href="#set-event-capacity">Set event capacity</a></li><li><a href="#set-registration-open-until">Set Registration Open Until</a></li><li><a href="#save-the-settings">Save the settings</a></li><li><a href="#activate-the-event">Activate the Event</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>This guide covers how to use the CLEAR Learning Novi Event Creator tool to create a new event listing in Novi. The tool pre-populates template content for all CLEAR Learning programs, streamlining the event creation process and standardizing content across cohorts.</p>
+<p>This process applies to both virtual and in-person CLEAR Learning programs. Where steps differ between delivery formats, differences are clearly noted.</p>
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Have the following ready before starting. Do not begin this process without them.</p>
+<ul>
+<li><p>The program agenda, generated using the Program Agenda Generator tool and uploaded to Novi Files.</p></li>
+<li><p>The Zoom Welcome Session registration link. Create the Welcome Session in Zoom using the CLEAR Learning login and copy the registration link before proceeding. This is the registration link, not the join link.</p></li>
+<li><p>Confirmed program pricing.</p></li>
+</ul>
+<div class="callout note"><p>Virtual programs only: You must create the Welcome Session Zoom meeting and have the registration link ready before starting. The registration link is entered directly into the tool and populates all program communications.</p></div>
+<h2 id="part-1-select-your-program-and-enter-cohort-details">Part 1: Select Your Program and Enter Cohort Details</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 91%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><p><strong>Navigate to the Novi Event Creator tool</strong></p>
+<p>Navigate to the CLEAR Learning Automations Tool Dashboard and select the Novi Event Creator app. You will see a grid of all available CLEAR Learning programs.</p></td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td><p><strong>Select the correct program tile</strong></p>
+<p>Click the tile for the program and delivery format you wish to create. Note the following:</p>
+<ul>
+<li><p>NCIT Basic has four tiles: Canadian Virtual, US Virtual, Canadian In-Person, and US In-Person. Select the correct one.</p></li>
+<li><p>Programs that do not specify virtual or in-person are offered in only one format. For example, AIT is in-person only; some workshops are virtual only.</p></li>
+<li><p>If a program is not currently available in a particular format, the tool cannot be used to create it.</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><p><strong>Select the month and year</strong></p>
+<p>In the Cohort Details section, select the month from the drop-down and enter the year. This will automatically:</p>
+<ul>
+<li><p>Generate the event title in the standard naming format (program name + month + year).</p></li>
+<li><p>Populate the Internal Notes Name field with the cohort name in TalentLMS format (e.g., 2027.01.01 NCIT B CAN Open).</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td><p><strong>Verify the auto-populated fields</strong></p>
+<p>Confirm the following fields populated correctly:</p>
+<ul>
+<li><p>Event Title — should reflect the program name, month, and year.</p></li>
+<li><p>Overview / Short Description — auto-populated from the program template.</p></li>
+<li><p>Internal Notes Name — the cohort name used in both TalentLMS and Novi. Important for cross-system consistency.</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout neutral"><p>The Internal Notes Name field defaults the day (DD) to 01 until you enter the program start date. Once you enter the start date in the Date &amp; Time section, the DD updates automatically to match.</p></div>
+<h2 id="part-2-date-time-and-location">Part 2: Date, Time, and Location</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td><p><strong>Enter the start date and time</strong></p>
+<p>In the Date &amp; Time section, enter the start date and time as follows:</p>
+<ul>
+<li><p>Virtual programs: Enter the date and start time of the Welcome Session (typically 11:00 AM Eastern).</p></li>
+<li><p>In-person programs: Enter the date and start time of Day One (typically between 8:00 and 9:00 AM local time).</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><strong>6</strong></td>
+<td><p><strong>Enter the end date and time</strong></p>
+<p>Enter the end date and time as follows:</p>
+<ul>
+<li><p>Virtual programs: Enter the date and end time of the final Program Review and Test Prep session (typically ending at 1:00 or 2:30 PM Eastern).</p></li>
+<li><p>In-person programs: Enter the last day of the program and the expected end time (typically between 3:30 and 5:00 PM local time).</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>Virtual programs are always in Eastern Time — do not change the time zone. For in-person programs, select the time zone of the training location.</p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>7</strong></td>
+<td><p><strong>Complete the location section</strong></p>
+<p><strong>Virtual programs:</strong></p>
+<ul>
+<li><p>Virtual Location Name: This should always be Welcome Session Zoom Registration Link.</p></li>
+<li><p>Meeting URL: Paste the Zoom registration link you created before starting this process.</p></li>
+</ul>
+<p><strong>In-person programs:</strong></p>
+<ul>
+<li><p>Enter the venue name, address lines, city, state/province, zip code, and country.</p></li>
+<li><p>If a hotel block has been negotiated, enter the Hotel Booking Link URL and the rate deadline date.</p></li>
+<li><p>Enter the Cancellation No-Refund Date.</p></li>
+<li><p>Check-In Time / Training Start: Enter the registration window in the following format: 7:30 to 8:00 AM on May 4, 2026. Follow the hint text in the field for correct formatting.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><strong>8</strong></td>
+<td><p><strong>Enter the Program Agenda link</strong></p>
+<p>In the Program Agenda Link field, paste the URL to the agenda file in Novi Files. You should have uploaded this before starting. This link auto-populates in the primary details, post-registration message, and ticket confirmation email.</p></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="part-3-review-and-edit-event-descriptions">Part 3: Review and Edit Event Descriptions</h2>
+<p>The Event Descriptions section contains three text fields pre-populated from the program template. As you enter location information and the agenda link, placeholder values in these fields update automatically.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>9</strong></td>
+<td><p><strong>Review the Primary Details field</strong></p>
+<p>This is the main event description visible on the event landing page. It includes the program overview, delivery format, session structure, technical requirements, and cancellation policy. All program content is in this field — CLEAR Learning no longer divides content between Primary and Secondary Details.</p>
+<p>Make any necessary edits using the Rich Text editor (default) or switch to HTML view for precise formatting. Use the Copy HTML button to copy field content to your clipboard.</p></td>
+</tr>
+<tr class="even">
+<td><strong>10</strong></td>
+<td><p><strong>Review the Post-Registration Message</strong></p>
+<p>This is what registrants see immediately after completing their purchase in the Novi portal. It confirms their registration, provides next steps, and includes the Welcome Session registration link for virtual programs. Review and edit as needed.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>11</strong></td>
+<td><p><strong>Review the Ticket Confirmation Email</strong></p>
+<p>This email is sent to registrants after purchase. It contains more detailed next-steps information than the post-registration message. This content applies to both tickets. Review and edit as needed.</p></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong><br />
+</strong></p>
+<h2 id="part-4-review-ticket-pricing">Part 4: Review Ticket Pricing</h2>
+<p>The Tickets section pre-populates with the standard member and non-member pricing for the selected program. Verify the pricing is correct before creating the event. Do not change ticket names or ticket details unless specifically instructed.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>12</strong></td>
+<td><p><strong>Verify ticket pricing</strong></p>
+<p>Confirm that Ticket 1 (CLEAR Member Registration) and Ticket 2 (General Event Registration) show the correct prices for this program. Update the price field if needed.</p></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="part-5-create-the-event">Part 5: Create the Event</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>13</strong></td>
+<td><p><strong>Click the Create Event in Novi button</strong></p>
+<p>Once all information is entered and verified, click the Create Event in Novi button at the bottom of the form. The tool will display progress as it creates the event and both tickets in Novi.</p></td>
+</tr>
+<tr class="even">
+<td><strong>14</strong></td>
+<td><p><strong>Access the event in Novi</strong></p>
+<p>When the event is created successfully, two buttons will appear:</p>
+<ul>
+<li><p>Open Novi Admin — Opens the Novi Events list. Search for the event by typing the month and year (e.g., January 2027) to locate it quickly.</p></li>
+<li><p>View Event Page — Opens the public-facing event page to preview how it will appear to registrants.</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="part-6-complete-the-post-creation-checklist">Part 6: Complete the Post-Creation Checklist</h2>
+<p>After the event is created, a detailed checklist appears below the result. This checklist is program-specific and walks you through every manual step required to finalize the event in Novi. Use the checkboxes to track your progress.</p>
+<h2 id="details-tab">Details Tab</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>15</strong></td>
+<td><p><strong>Upload the event logo</strong></p>
+<p>In Novi, open the event and go to the Details tab. Website logos are stored in the CLEAR Learning SharePoint Logos folder — the link is provided in the checklist. Click the upload button under the Logo section, navigate to the appropriate logo file, and open it to upload.</p></td>
+</tr>
+<tr class="even">
+<td><strong>16</strong></td>
+<td><p><strong>Upload the agenda PDF</strong></p>
+<p>Scroll to the Agenda section of the Details tab. Click the Upload File button under the Upload PDF Agenda label. Upload the agenda file from Novi Files or the cohort folder in SharePoint. Do not use the Add Agenda Item button — that creates an agenda within Novi rather than attaching a downloadable file.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>17</strong></td>
+<td><p><strong>Set the event contact</strong></p>
+<p>In the Event Contact section, select Association Staff from the contact type list. In the Name field that appears, select the appropriate staff member from the drop-down.</p></td>
+</tr>
+<tr class="even">
+<td><strong>18</strong></td>
+<td><p><strong>Update the Post-Registration Message</strong></p>
+<p>The Post-Registration Message must be pasted into Novi manually:</p>
+<ul>
+<li><p>Click the Copy Post-Registration HTML button in the checklist. This copies the formatted HTML to your clipboard.</p></li>
+<li><p>In Novi, open the event and go to the Details tab. Locate the Post-Registration Additional Details field.</p></li>
+<li><p>Click the Code View icon (&lt; &gt;) in the text editor toolbar to enable HTML editing mode.</p></li>
+<li><p>Paste the copied HTML into the editor and click Save Code.</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="tickets-tab">Tickets Tab</h2>
+<p>Complete the following steps for each ticket. The checklist in the tool has a separate section for each ticket with the exact values to enter.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>19</strong></td>
+<td><p><strong>Open Ticket 1: CLEAR Member Registration</strong></p>
+<p>In Novi, click the Tickets tab and open the CLEAR Member Registration ticket.</p></td>
+</tr>
+<tr class="even">
+<td><strong>20</strong></td>
+<td><p><strong>Set visibility</strong></p>
+<p>Change the Visibility setting to Open (Anyone).</p></td>
+</tr>
+<tr class="odd">
+<td><strong>21</strong></td>
+<td><p><strong>Set purchase restriction</strong></p>
+<p>In the Ability to Purchase / Attend section:</p>
+<ul>
+<li><p>Restrict To: Select Logged-In Users with Member Benefits.</p></li>
+<li><p>Restriction Level: Select Restrict Purchaser and Attendee.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><strong>22</strong></td>
+<td><p><strong>Set accounting</strong></p>
+<p>In the Accounting section, select the Item and Class values listed in the checklist for this program. These values are program-specific and are provided in the checklist.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>23</strong></td>
+<td><p><strong>Set attendee form fields</strong></p>
+<p>Add the following fields to the attendee form in order. Click in the field name search box, type the field name, click Add, and toggle required/optional as noted.</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 70%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Field</strong></th>
+<th><strong>What to Enter</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td><strong>Name</strong></td>
+<td>Required</td>
+</tr>
+<tr class="odd">
+<td><strong>Job Title</strong></td>
+<td>Required — after adding, drag this field up below Name using the drag handle</td>
+</tr>
+<tr class="even">
+<td><strong>Company</strong></td>
+<td>Required</td>
+</tr>
+<tr class="odd">
+<td><strong>Email</strong></td>
+<td>Required</td>
+</tr>
+<tr class="even">
+<td><strong>Phone</strong></td>
+<td>Optional</td>
+</tr>
+<tr class="odd">
+<td><strong>ADA</strong></td>
+<td>Optional</td>
+</tr>
+<tr class="even">
+<td><strong>Terms &amp; Conditions (T&amp;C)</strong></td>
+<td>Required</td>
+</tr>
+<tr class="odd">
+<td><strong>Internal Notes (Internal Use Only)</strong></td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>NCIT Specialized only: Also add NCIT Basic (Internal Use Only) as optional, between Terms &amp; Conditions and Internal Notes.</p></div>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>24</strong></td>
+<td><p><strong>Save the member ticket</strong></p>
+<p>Click Save and Close.</p></td>
+</tr>
+<tr class="even">
+<td><strong>25</strong></td>
+<td><p><strong>Open Ticket 2: General Event Registration</strong></p>
+<p>Open the General Event Registration ticket and repeat steps 20–24 with one difference in the purchase restriction:</p>
+<ul>
+<li><p>Restrict To: Select Specific Group/Committee.</p></li>
+<li><p>In the field that appears, select Has User Account (Group).</p></li>
+<li><p>Restriction Level: Restrict Purchaser and Attendee.</p></li>
+<li><p>All other fields are the same as the member ticket.</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><strong>26</strong></td>
+<td><p><strong>Save the general ticket</strong></p>
+<p>Click Save and Close.</p></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="settings-tab">Settings Tab</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>27</strong></td>
+<td><p><strong>Enable the pre-event reminder email</strong></p>
+<p>Click the Settings tab and check Send Attendees an Automated Pre-Event Reminder. A date and time field will appear.</p>
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Set the time before the date. The field defaults to 24 hours before the welcome session and requires a minimum of one hour before the start of the session, which blocks same-day date selection for virtual programs. Always set the time first, then the date.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><p>Virtual programs: Set the time to 1 hour before the Welcome Session (e.g., 10:00 AM for an 11:00 AM session), then set the date to the Welcome Session date.</p></li>
+<li><p>In-person programs: Set to 24 hours before Day One.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><strong>28</strong></td>
+<td><h2 id="set-event-capacity">Set event capacity</h2>
+<p>Scroll to the Event Capacity field and enter the number provided in the checklist for this program. If a specific capacity has been agreed upon for this cohort (e.g., for a closed or hosted program), use that number instead.</p></td>
+</tr>
+<tr class="odd">
+<td><strong>29</strong></td>
+<td><h2 id="set-registration-open-until">Set Registration Open Until</h2>
+<p>In the Registration Availability section, set the Registration Open Until date and time:</p>
+<ul>
+<li><p>Virtual programs: Set to the date and time of the Welcome Session.</p></li>
+<li><p>In-person programs: Set to the date and time of Day One.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><strong>30</strong></td>
+<td><h2 id="save-the-settings">Save the settings</h2>
+<p>Click Save.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="activate-the-event">Activate the Event</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>31</strong></td>
+<td><p><strong>Verify the Internal Notes field</strong></p>
+<p>Before activating, scroll to the Notes field in the event and confirm the cohort name is present. This should have been populated by the tool. If it is missing, enter it manually.</p></td>
+</tr>
+<tr class="even">
+<td><strong>32</strong></td>
+<td><p><strong>Activate the event</strong></p>
+<p>Once all checklist items are complete, navigate to the top of the event page in Novi and toggle the event status from Inactive to Active. The event is now live and visible to registrants.</p></td>
+</tr>
+</tbody>
+</table></div>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

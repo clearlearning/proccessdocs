@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Lookup Tool – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>User Lookup Tool</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#before-you-begin">Before You Begin</a></li><li><a href="#part-1-connect-to-apis">Part 1: Connect to APIs</a></li><li><a href="#part-2-look-up-the-user">Part 2: Look Up the User</a></li><li><a href="#part-3-verify-program-completion">Part 3: Verify Program Completion</a></li><li><a href="#part-4-verify-payment">Part 4: Verify Payment</a></li><li><a href="#part-5-issue-the-certificate">Part 5: Issue the Certificate</a></li><li><a href="#troubleshooting">Troubleshooting</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>The User Lookup Tool allows you to search for individual users in the CLEAR Learning Portal (TalentLMS), review their course progress and exam scores, verify payment directly in Novi AMS, and mark programs as complete to issue certificates.</p>
+<p>This guide covers the full certification verification and issuance process, from looking up a user through confirming payment and issuing their certificate in TalentLMS.</p>
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Make sure you have the following:</p>
+<ul>
+<li><p><strong>Auth Token:</strong> Your CLEAR Learning worker auth token. Enter it once — it is saved in your browser for future sessions.</p></li>
+<li><p><strong>Novi Auth Token:</strong> Your Novi AMS auth token. Also saved after first use. The tool will attempt to connect to Novi automatically when the page loads if the token is already saved.</p></li>
+<li><p><strong>TalentLMS access:</strong> Administrator access to the CLEAR Learning Portal.</p></li>
+<li><p><strong>Certification application:</strong> The applicant’s Wufoo form submission or supervisor certification form, and supervisor letter confirming at least one year of regulatory investigative experience.</p></li>
+</ul>
+<div class="callout note"><p><strong>Note:</strong> Before issuing any certificate, confirm that the applicant has submitted their certification application, the supervisor letter confirms at least one year of regulatory investigative experience, the applicant has completed all required program components, and payment has been received.</p></div>
+<h2 id="part-1-connect-to-apis">Part 1: Connect to APIs</h2>
+<p>When the tool opens, the API Connection panel is at the top of the page. Both TalentLMS and Novi connect here.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 25%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Enter your Auth Token</td>
+<td>The Worker URL is pre-configured. Enter your CLEAR Learning auth token and click Test Connection. A green “Connected” message confirms the TalentLMS connection.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Enter your Novi Auth Token</td>
+<td>Enter your Novi token in the Novi Auth Token field and click Connect to Novi. A green confirmation message appears when connected. If your token was previously saved, both connections happen automatically on page load.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="part-2-look-up-the-user">Part 2: Look Up the User</h2>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 38%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>Search for the user</td>
+<td>In the Search Users field, enter the user’s name or email address. Select the correct match from the results list.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Review the user header</td>
+<td>The tool displays the user’s name, email, login, and all cohort group memberships.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p><strong>Tip:</strong> If the user does not appear in search results, try searching by last name only. Remove any suffixes such as Jr. or Sr. If you still cannot find them, they may be enrolled under a different name in TalentLMS.</p></div>
+<h2 id="part-3-verify-program-completion">Part 3: Verify Program Completion</h2>
+<p>After selecting a user, their enrolled courses load as collapsible accordion cards. Each card shows course completion status and percentage.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 25%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>Expand the program course</td>
+<td>Click the course header (e.g., NCIT Basic Online Program) to expand the module list.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Review module statuses</td>
+<td>The module table shows each unit’s name, type, completion status, and score. Only Test and Assignment type modules display a score — all other module types show “—” in the Score column. Modules are listed in the configured display order.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Verify the final exam</td>
+<td>Expand the Final Exam course (e.g., NCIT Basic Final Exam – US or Canadian). Confirm the exam was attempted and the score is 70% or higher.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="part-4-verify-payment">Part 4: Verify Payment</h2>
+<p>After the course cards load, a Payment Verification panel appears below them. If Novi was already connected at the top of the page, the event search field is ready immediately.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 25%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8</td>
+<td>Select the Novi event</td>
+<td>In the Novi Event field, type the program date (MM/DD/YYYY), name, or category to filter the dropdown. Click the correct event to select it.</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>Pull registrations</td>
+<td>Click Pull Registrations. The tool fetches all registrant records for the selected event and displays a count when complete.</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>Search for the participant</td>
+<td>The Participant Name field is pre-filled with the name of the user you looked up. Edit the name if needed (e.g., remove a suffix), then click Search.</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>Review payment status</td>
+<td><p>A result appears showing the matched registrant name, email, and a payment badge:</p>
+<ul>
+<li><p>✓ Paid (green) — proceed to Part 5</p></li>
+<li><p>✗ Unpaid (red) — do not issue the certificate until payment is resolved</p></li>
+<li><p>? Unknown — verify in Novi directly</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p><strong>Tip:</strong> If the participant is not found, try searching by last name only. They may be registered under a slightly different name or as an attendee under another person’s registration. If multiple matches appear, click the correct registrant to confirm their payment status.</p></div>
+<div class="callout important"><p><strong>Important:</strong> If payment status does not show Paid, contact the applicant and let them know that payment must be received before the certificate can be issued.</p></div>
+<h2 id="part-5-issue-the-certificate">Part 5: Issue the Certificate</h2>
+<p>Once all requirements are confirmed — program completion, exam score, and payment — use the Mark Course as Complete section at the bottom of the panel to issue the certificate.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 25%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>12</td>
+<td>Select the course</td>
+<td>In the Mark Course as Complete dropdown, select the appropriate program course (e.g., NCIT Basic Online Program or Canadian NCIT Basic Online Program).</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>Click Open in Portal</td>
+<td>TalentLMS opens in a new tab on the users-in-progress page for the selected course.</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>Complete the course</td>
+<td>In TalentLMS, search for the user by last name. Hover over their row and click the checkmark icon (tooltip: Complete) in the Options column.</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>Set the completion date</td>
+<td>In the Complete pop-up, select today’s date in the Completed On field and click Complete.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p><strong>Note:</strong> If your TalentLMS session is not active, you will be prompted to log in first.</p></div>
+<div class="callout tip"><p><strong>Tip:</strong> Completing the course automatically issues the certificate and sends the learner an email from the CLEAR Learning Portal. If a learner asks where to find their certificate, they can go to My Certificates under their profile. They do not need current course access to view earned certificates — only an active login.</p></div>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Issue</strong></th>
+<th><strong>Resolution</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>User not found in search</strong></td>
+<td>Try last name only. Remove suffixes (Jr., Sr., III). Check if the participant used a different name in TalentLMS.</td>
+</tr>
+<tr class="even">
+<td><strong>No courses loading for user</strong></td>
+<td>The user may not be enrolled in any courses. Verify enrollment in TalentLMS directly.</td>
+</tr>
+<tr class="odd">
+<td><strong>Novi Connect button stays on “Connecting…”</strong></td>
+<td>Refresh the page and try again. Verify the Novi token is correct by testing it in the Exam Report Generator.</td>
+</tr>
+<tr class="even">
+<td><strong>Participant not found in Novi registrations</strong></td>
+<td>Try last name only. The participant may be registered under a different name or as an attendee under another person’s registration.</td>
+</tr>
+<tr class="odd">
+<td><strong>Payment shows Unpaid</strong></td>
+<td>Contact the applicant. Do not issue the certificate until payment is confirmed.</td>
+</tr>
+<tr class="even">
+<td><strong>TalentLMS login required when opening portal</strong></td>
+<td>Your session has expired. Log in to TalentLMS first, then return to the tool and click Open in Portal again.</td>
+</tr>
+<tr class="odd">
+<td><strong>Certificate not issued after completing course</strong></td>
+<td>Verify the correct program course was selected (not the exam course). The certificate is attached to the program course completion.</td>
+</tr>
+</tbody>
+</table></div>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

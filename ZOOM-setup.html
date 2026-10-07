@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zoom — Session Setup & Live Facilitation – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Zoom — Session Setup &amp; Live Facilitation</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#part-1-zoom-dashboard-setup">Part 1: Zoom Dashboard Setup</a></li><li><a href="#part-2-live-facilitation-host-tools">Part 2: Live Facilitation — Host Tools</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>This guide covers the process for setting up and managing sessions in the <strong>Zoom dashboard</strong> before a session, and for using <strong>Zoom host tools</strong> while facilitating a live virtual session. Log into Zoom at <strong>zoom.com</strong> using the CLEAR Learning account, available in OnePassword.</p>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> Sessions created through TalentLMS (instructor-led modules) are automatically created in Zoom. The process for creating those sessions is covered in the <em>Create Live Sessions in TalentLMS</em> process guide. This guide covers Welcome Sessions (created manually) and everything you do inside a live session as the host.</p></div>
+<h2 id="part-1-zoom-dashboard-setup">Part 1: Zoom Dashboard Setup</h2>
+<p>Complete all setup in the Zoom dashboard before the session begins.</p>
+<h3 id="quick-process-guide">Quick Process Guide</h3>
+<h4 id="creating-a-welcome-session">Creating a Welcome Session</h4>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>Log into Zoom using the CLEAR Learning account (credentials in OnePassword). Go to the <strong>Meetings</strong> menu.</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>Click <strong>Schedule a Meeting</strong> in the top right corner.</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>Enter the meeting name (e.g., <em>NCIT Basic Welcome Session — April 2026</em>).</td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td>Set the start date, time, and duration using the <strong>When</strong> fields. Welcome sessions are typically <strong>1 hour</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td>Confirm the time zone is set to <strong>Eastern Time</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>6</strong></td>
+<td>Check the <strong>Registration — Required</strong> checkbox. This generates the registration link used in the Novi event listing and TalentLMS welcome email.</td>
+</tr>
+<tr class="odd">
+<td><strong>7</strong></td>
+<td>Leave all other settings at their defaults. Click <strong>Save</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p><strong>Module evaluations are no longer attached to Zoom sessions.</strong> Every module, instructor-led or asynchronous, has its own evaluation unit in TalentLMS. See <a href="https://clearlearning.github.io/proccessdocs/Gen-mod-eval-links.html" target="_blank" rel="noopener" target="_blank">Updating Module Evaluation Links</a> for the current process.</p></div>
+<h4 id="adding-polls-to-a-session">Adding Polls to a Session</h4>
+<p>Most polls have already been created in Zoom. You select which ones apply to each session.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>Open the session in the Zoom dashboard. Go to the <strong>Polls/Quizzes</strong> tab.</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>Click <strong>Filter for Meeting</strong> to scope the list to this session.</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>Deselect all polls that do not apply, or click <strong>Deselect All</strong> and then check only the polls you need.</td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td>Click <strong>Save</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Creating a Poll on the Fly: While in the meeting,</strong> If a new poll is needed, click the <strong>+ button</strong> in the top right corner of the Polls/Quizzes tab. Enter the title and questions, configure settings, and click <strong>Save</strong>. Run it during the session the same way as any other poll.</p></div>
+<h4 id="starting-a-session">Starting a Session</h4>
+<p>From the <strong>Meetings</strong> menu, hover over the session title and click the <strong>Start</strong> button that appears. Log in <strong>15 minutes</strong> before the scheduled start time.</p>
+<h2 id="part-2-live-facilitation-host-tools">Part 2: Live Facilitation — Host Tools</h2>
+<p>Everything in this section applies once you are inside an active Zoom session.</p>
+<h3 id="quick-process-guide-1">Quick Process Guide</h3>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><strong>Waiting Room:</strong> Open the Participants panel. Admit the instructor individually first, then Admit All for participants when ready.</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td><strong>Co-Host:</strong> Hover over the instructor's name → three dots (…) → <strong>Make Co-Host</strong>. Do this before opening the room to participants.</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><strong>Participant Permissions:</strong> Arrow next to Participants icon → <strong>Host Tools for Participants</strong>. Allow: Chat, Rename, Unmute. Disable: Start Video, all recording and transcription options.</td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td><strong>Screen Share:</strong> Click Share Screen → select window → set to Content Only → check Share Sound for videos → Stop Share when done.</td>
+</tr>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td><strong>Polls:</strong> More (⋯) → Polls/Quizzes → Launch → End Poll → Share Results → Stop Sharing.</td>
+</tr>
+<tr class="even">
+<td><strong>6</strong></td>
+<td><strong>Breakout Rooms:</strong> More (⋯) → Breakout Rooms → set number of rooms (4–6 participants each) → Assign Automatically → exclude Co-Host → Create → post activity in chat → Open All Rooms.</td>
+</tr>
+<tr class="odd">
+<td><strong>7</strong></td>
+<td><strong>Recording:</strong> Click Record → <strong>Record to the Cloud</strong>. Pause during breaks. Stop when session ends.</td>
+</tr>
+<tr class="even">
+<td><strong>8</strong></td>
+<td><strong>Mute a Participant:</strong> Hover over name in Participants panel → click Mute.</td>
+</tr>
+<tr class="odd">
+<td><strong>9</strong></td>
+<td><strong>Closed Captions:</strong> More (⋯) → Show Captions.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="detailed-process-guide">Detailed Process Guide</h3>
+<h4 id="managing-the-waiting-room-admitting-participants">2.1 — Managing the Waiting Room &amp; Admitting Participants</h4>
+<p>All CLEAR Learning live sessions use the waiting room. Click the <strong>Participants</strong> icon at the bottom of the screen to open the participant panel.</p>
+<ul>
+<li><p>A <strong>Waiting Room</strong> section lists anyone who has joined but not yet been admitted.</p></li>
+<li><p>To admit everyone at once, click <strong>Admit All</strong>.</p></li>
+<li><p>To admit a specific person, hover over their name and click <strong>Admit</strong>.</p></li>
+</ul>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Admitting the Instructor First:</strong> Log in 15 minutes early. When the instructor joins the waiting room, admit <strong>only them</strong> so you can make them Co-Host and complete a tech check before opening the room to participants.</p></div>
+<h4 id="making-the-instructor-a-co-host">2.2 — Making the Instructor a Co-Host</h4>
+<p>Instructors must be Co-Hosts so they can share their screen and manage slides.</p>
+<ul>
+<li><p>In the <strong>Participants</strong> panel, hover over the instructor's name.</p></li>
+<li><p>Click the <strong>three dots (…)</strong> that appear on the far right of their row.</p></li>
+<li><p>Select <strong>Make Co-Host</strong>.</p></li>
+</ul>
+<div class="callout important"><p>
+<tr class="header">
+<th><strong>Why This Matters:</strong> If you lose your internet connection, a Co-Host keeps the session live. Without one, the session ends the moment you are disconnected.</p></div>
+<h4 id="participant-permissions">2.3 — Participant Permissions</h4>
+<p>Click the <strong>arrow (▲)</strong> next to the Participants icon, then select <strong>Host Tools for Participants</strong>.</p>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>✓ Allow</strong></th>
+<th><strong>✕ Disable</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Chat</strong></p>
+<p><strong>Rename Themselves</strong></p>
+<p><strong>Unmute Themselves</strong></p></td>
+<td><p><strong>Start Video</strong></p>
+<p><strong>Record to Computer</strong></p>
+<p><strong>Request to Record</strong></p>
+<p><strong>Request Host to Start Cloud Recording</strong></p>
+<p><strong>Transcribe</strong></p></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="muting-a-disruptive-participant">2.4 — Muting a Disruptive Participant</h4>
+<p>In the <strong>Participants</strong> panel, hover over the participant's name and click the <strong>Mute</strong> button that appears.</p>
+<h4 id="screen-sharing">2.5 — Screen Sharing</h4>
+<ul>
+<li><p>Click <strong>Share Screen</strong> in the meeting toolbar.</p></li>
+<li><p>Select the window or screen to share.</p></li>
+<li><p>Set the share option to <strong>Content Only</strong> (not Desktop).</p></li>
+<li><p>If sharing a video, check <strong>Share Sound</strong> in the share options on the right before clicking Share.</p></li>
+<li><p>Once sharing, the main Zoom window minimizes to a toolbar. Click the red <strong>Stop Share</strong> button when done.</p></li>
+</ul>
+<h4 id="closed-captions">2.6 — Closed Captions</h4>
+<p>Go to <strong>More (⋯)</strong> in the meeting toolbar and select <strong>Show Captions</strong> to enable live automatic captions. Use if a participant is hearing impaired.</p>
+<h4 id="running-polls-quizzes">2.7 — Running Polls &amp; Quizzes</h4>
+<ul>
+<li><p>Click <strong>More (⋯)</strong> in the toolbar and select <strong>Polls/Quizzes</strong>.</p></li>
+<li><p>Hover over the poll you want to run and click <strong>Launch</strong>.</p></li>
+<li><p>A timer and participation counter display during the poll. Aim for approximately <strong>90% participation</strong> before ending a single-question poll — typically 30–45 seconds.</p></li>
+<li><p>Click <strong>End Poll</strong>, then <strong>Share Results</strong> to display answers to all participants.</p></li>
+<li><p>Click <strong>Stop Sharing</strong> when done.</p></li>
+<li><p>To run another poll: click the <strong>back arrow (←)</strong> in the top left of the polls window, select the next poll, and repeat.</p></li>
+</ul>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Multi-Question Polls:</strong> For polls with multiple questions (e.g., the Report Writing session), remind participants to answer <strong>all questions before submitting</strong>. The participation display shows total submissions, not per-question responses.</p></div>
+<h4 id="breakout-rooms">2.8 — Breakout Rooms</h4>
+<ul>
+<li><p>Click <strong>More (⋯)</strong> and select <strong>Breakout Rooms</strong>.</p></li>
+<li><p>Set the number of rooms using the toggle. Aim for <strong>4–6 participants per room</strong> (minimum 3 depending on class size).</p></li>
+<li><p>Select <strong>Assign Automatically</strong> — do not assign manually or let participants choose.</p></li>
+<li><p>Check the option to <strong>not include the Co-Host</strong> so the instructor stays in the main room with you until they are ready to visit rooms.</p></li>
+<li><p>Click <strong>Create</strong>.</p></li>
+<li><p>Post the breakout activity prompt in the <strong>chat</strong> before opening rooms so participants have it when they arrive.</p></li>
+<li><p>Click <strong>Open All Rooms</strong> when ready.</p></li>
+</ul>
+<p><strong>While Rooms Are Open:</strong></p>
+<ul>
+<li><p><strong>Broadcast a message</strong> — use the Broadcast button to send a text message to all rooms (e.g., a time warning).</p></li>
+<li><p><strong>Move a participant</strong> — hover over their name and click the <strong>Move To</strong> icon to move them to a different room.</p></li>
+<li><p><strong>Move the instructor</strong> into a specific room the same way, when they are ready to visit.</p></li>
+<li><p><strong>Add a room</strong> if you need to separate participants further.</p></li>
+<li><p><strong>Plan the next session</strong> — use the Plan Next Session button to adjust room count or settings for a follow-up breakout.</p></li>
+</ul>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Closing Rooms:</strong> Clicking <strong>Close All Rooms</strong> sends a <strong>60-second countdown</strong> notice into all rooms. Participants are automatically returned to the main room when the timer expires.</p></div>
+<h4 id="recording-a-session">2.9 — Recording a Session</h4>
+<p>Only record sessions for programs that require a makeup recording (ACRG, ELPR, BCT, SAB). Always record to the cloud, not your local computer.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>Click the <strong>Record</strong> button in the meeting toolbar.</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>Select <strong>Record to the Cloud</strong>. A recording indicator will appear in the top left corner confirming recording has started.</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td>To <strong>pause</strong> recording during a break, click the <strong>pause icon</strong> next to the recording indicator.</td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td>To <strong>stop</strong> recording, click the <strong>stop icon</strong>. You can stop and restart to create separate clips if needed.</td>
+</tr>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td>When the session ends, Zoom will process the recording and email you when it is ready. Download it from the CLEAR Learning Zoom account.</td>
+</tr>
+<tr class="even">
+<td><strong>6</strong></td>
+<td>Follow the <em>Update &amp; Release Live Session Recordings</em> process guide to upload to Vimeo, edit, and release in TalentLMS.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p>
+<tr class="header">
+<th><strong>Note:</strong> Recordings of some programs are shared with the <strong>current cohort only</strong> and are removed after the cohort completes. All other programs use pre-existing recordings — do not record those sessions.</p></div>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>

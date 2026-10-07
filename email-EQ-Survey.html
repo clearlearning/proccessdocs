@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emotional Intelligence Quotient Survey Reports – CLEAR Learning Process Guide</title>
+<link rel="icon" type="image/png" href="https://assets-002.noviams.com/novi-file-uploads/clear/structure/clearlogo.png">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burgundy:#64092C; --burgundy-lt:#f5eaee; --gold:#DDA838; --gold-lt:#fdf6e3;
+  --blue:#084D78; --blue-lt:#e8f2f8; --charcoal:#484848; --surface:#f7f6f4;
+  --white:#fff; --border:#e0ddd8; --text:#2c2c2c; --muted:#6b6b6b; --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--surface)}
+a{color:var(--blue);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--blue)}
+
+/* Header */
+.doc-header{background:var(--burgundy);color:var(--white);padding:34px 24px 30px}
+.doc-header-inner{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.doc-header h1{font-family:'Trebuchet MS',sans-serif;font-size:28px;line-height:1.25;margin:0}
+.rule{width:48px;height:3px;background:var(--gold);margin-top:16px}
+
+/* Layout */
+.layout{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+.layout.has-toc{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:start}
+.toc{position:sticky;top:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;max-height:calc(100vh - 40px);overflow-y:auto}
+.toc-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;font-size:12.5px;font-weight:500;color:var(--charcoal);padding:5px 8px;border-left:3px solid transparent;border-bottom:none;line-height:1.35}
+.toc li a:hover{background:var(--burgundy-lt);color:var(--burgundy);border-left-color:var(--burgundy)}
+.doc-body{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px 44px 44px;min-width:0}
+
+/* Headings */
+.doc-body h2{font-family:'Trebuchet MS',sans-serif;font-size:21px;color:var(--burgundy);margin:36px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--burgundy-lt);scroll-margin-top:16px}
+.doc-body h2:first-child{margin-top:0}
+.doc-body h3{font-size:16.5px;color:var(--text);margin:26px 0 10px;scroll-margin-top:16px}
+.doc-body h4{font-size:14.5px;color:var(--burgundy);margin:20px 0 8px}
+.doc-body h5,.doc-body h6{font-size:13.5px;margin:16px 0 6px}
+.doc-body h2.doc-divider{font-size:24px;background:var(--burgundy);color:var(--white);border:none;border-radius:var(--radius);padding:14px 20px;margin:56px 0 20px;box-shadow:inset 0 -3px 0 var(--gold)}
+.doc-body h2.doc-divider:first-child{margin-top:0}
+.doc-body p{margin:0 0 12px}
+.doc-body ul,.doc-body ol{margin:0 0 14px;padding-left:22px}
+.doc-body li{margin-bottom:4px}
+.doc-body li>p{margin:0}
+code{font-family:Consolas,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:1px 5px}
+blockquote{margin:12px 0;padding:10px 16px;border-left:3px solid var(--gold);background:var(--gold-lt);border-radius:0 var(--radius) var(--radius) 0}
+img{max-width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:14px 0 18px;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+thead th{background:var(--burgundy);color:var(--white);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:700}
+thead th strong{font-weight:700}
+tbody tr:nth-child(even) td{background:#fbfaf8}
+td p{margin:0 0 6px} td p:last-child{margin-bottom:0}
+table.steps td:first-child{width:56px;text-align:center;font-weight:700;color:var(--burgundy)}
+table.steps td:first-child strong{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--burgundy-lt);font-size:12.5px}
+table.steps thead th:first-child{text-align:center}
+
+/* Callouts */
+.callout{margin:14px 0 18px;padding:13px 18px;border-radius:var(--radius);border:1px solid var(--border);border-left-width:4px;font-size:14px}
+.callout p{margin:0 0 6px} .callout p:last-child{margin-bottom:0}
+.callout ul{margin:6px 0 0}
+.callout.note{background:var(--blue-lt);border-color:#b8d4e6;border-left-color:var(--blue)}
+.callout.tip{background:var(--gold-lt);border-color:#e8d090;border-left-color:var(--gold)}
+.callout.important{background:var(--burgundy-lt);border-color:#e3c4d0;border-left-color:var(--burgundy)}
+.callout.neutral{background:var(--surface);border-left-color:var(--charcoal)}
+
+.doc-footer{text-align:center;font-size:11.5px;color:var(--muted);padding:0 24px 32px}
+
+@media (max-width:900px){
+  .layout.has-toc{display:block}
+  .toc{position:static;max-height:none;margin-bottom:20px}
+  .doc-body{padding:24px 20px 30px}
+  .doc-header h1{font-size:23px}
+}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .toc,.doc-footer{display:none}
+  .layout.has-toc{display:block}
+  .layout{padding:0}
+  .doc-body{border:none;padding:0}
+  .doc-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .table-wrap,.callout,img{break-inside:avoid}
+}
+.figure-table{display:grid;grid-template-columns:minmax(160px,240px) minmax(0,1fr);gap:18px;align-items:start;margin:14px 0 18px}
+.figure-table .table-wrap{margin:0}
+.figure-table .figure img{margin:0}
+@media (max-width:700px){.figure-table{grid-template-columns:1fr}}
+.standalone-link{margin:-10px 0 18px;font-size:12.5px}
+
+</style>
+</head>
+<body>
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="eyebrow">CLEAR Learning &middot; Process Guide</div>
+    <h1>Emotional Intelligence Quotient Survey Reports</h1>
+    <div class="rule"></div>
+  </div>
+</header>
+<div class="layout has-toc">
+<nav class="toc" aria-label="Contents"><div class="toc-label">Contents</div><ol><li><a href="#overview">Overview</a></li><li><a href="#before-you-begin">Before You Begin</a></li><li><a href="#process-guide">Process Guide</a></li><li><a href="#quick-reference-the-four-eq-domains">Quick Reference: The Four EQ Domains</a></li><li><a href="#troubleshooting">Troubleshooting</a></li></ol></nav>
+<main class="doc-body">
+<!-- ===== CONTENT START — edit below ===== -->
+
+<h2 id="overview">Overview</h2>
+<p>The EQ Survey Automation Tool generates Emotional Quotient (EQ) survey result emails for individual program attendees and a cohort overview report for instructors. It pulls survey response data directly from TalentLMS, calculates scores across the four EQ domains, and produces ready-to-send HTML email files. These files are delivered through the same Power Automate process used for status report emails.</p>
+<p>The tool is used for three programs:</p>
+<ul>
+<li><p>ELPR – In-Person Program</p></li>
+<li><p>ELPR – Online Program</p></li>
+<li><p>So, You Think You Want to be a Board or Council Member (asynchronous)</p></li>
+</ul>
+<p>Because the asynchronous program runs on an ongoing basis rather than in scheduled cohorts, this report should be run approximately once per month to check for new completions and send results to any learners who have recently submitted the survey.</p>
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>Make sure you have the following:</p>
+<ul>
+<li><p>Access to the CLEAR Learning Administrative Tools Dashboard</p></li>
+<li><p>Your CLEAR Learning Portal auth token (saved automatically after first use)</p></li>
+<li><p>The cohort name as it appears in TalentLMS</p></li>
+</ul>
+<div class="callout note"><p><strong>Note:</strong> If this is your first time using the tool, you will need the auth token provided by your administrator. After the first successful connection, the token is saved in your browser automatically.</p></div>
+<h2 id="process-guide">Process Guide</h2>
+<h3 id="part-1-pull-survey-data">Part 1: Pull Survey Data</h3>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td><strong>1</strong></td>
+<td>From the <strong>Administrative Tools Dashboard</strong>, click the <strong>EQ Survey Automation</strong> card to open the tool.</td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td>If the connection status at the top does not show <strong>Connected</strong>, click <strong>Test Connection</strong>. The tool will authenticate automatically using your saved credentials.</td>
+</tr>
+<tr class="even">
+<td><strong>3</strong></td>
+<td>In the <strong>Select Program</strong> section, click the tile for the program you are running the report for.</td>
+</tr>
+<tr class="odd">
+<td><strong>4</strong></td>
+<td>Click in the <strong>Select Group</strong> field under <strong>Cohort / Group</strong>. Type to filter the list and select the cohort you want to run the report for.</td>
+</tr>
+<tr class="even">
+<td><strong>5</strong></td>
+<td>Click the <strong>Pull Survey Data</strong> button. The tool will fetch survey responses from TalentLMS and calculate each learner's EQ scores across the four domains.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout tip"><p><strong>Tip:</strong> For the So, You Think You Want to be a Board or Council Member program, there may not be a specific cohort group. Cohorts are only used for this program to identify bulk subscription purchases. In that case, leave the group field blank to pull all learners enrolled in the course who have completed the survey.</p>
+<p>For this program, the process should be completed once a month and any new responses should be responded to.</p></div>
+<h3 id="part-2-review-results">Part 2: Review Results</h3>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td><strong>6</strong></td>
+<td>On the <strong>Review</strong> page, you will see the number of learners processed and the <strong>class averages</strong> for each of the four EQ domains compared to the High Functioning Threshold (HFT).</td>
+</tr>
+<tr class="odd">
+<td><strong>7</strong></td>
+<td>Below is a table showing every learner's individual scores across <strong>Self-Awareness</strong>, <strong>Empathy</strong>, <strong>Self-Motivation</strong>, and <strong>Social Skills</strong>. Scores meeting or exceeding the HFT appear in <strong>green</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>8</strong></td>
+<td>Review the results for accuracy. When you are satisfied, click <strong>Generate Reports</strong> (top of page) or <strong>Generate All Reports</strong> (bottom of page) — both buttons do the same thing.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-3-send-learner-email-reports">Part 3: Send Learner Email Reports</h3>
+<p>Each learner receives a personalized email with their individual EQ scores across all four domains, the High Functioning Threshold for reference, and a description of what each domain means.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td><strong>9</strong></td>
+<td>On the <strong>Generate Reports</strong> page, locate the <strong>Learner Email Reports</strong> card at the top on the left.</td>
+</tr>
+<tr class="odd">
+<td><strong>10</strong></td>
+<td>To preview an individual learner's email before downloading, click the <strong>Preview</strong> button next to their name in the table below.</td>
+</tr>
+<tr class="even">
+<td><strong>11</strong></td>
+<td>To download a single learner's file — for example, for a late submission — click <strong>Download</strong> next to that individual's row.</td>
+</tr>
+<tr class="odd">
+<td><strong>12</strong></td>
+<td>To generate files for the entire cohort, click <strong>Download All as ZIP</strong>. This downloads a zip archive containing one HTML file per learner.</td>
+</tr>
+<tr class="even">
+<td><strong>13</strong></td>
+<td>Navigate to your <strong>Downloads</strong> folder in File Explorer. Right-click the zip file and select <strong>Extract All</strong>. Extract the files to a location of your choice.</td>
+</tr>
+<tr class="odd">
+<td><strong>14</strong></td>
+<td>Open the extracted folder. Select all <strong>.html</strong> files.</td>
+</tr>
+<tr class="even">
+<td><strong>15</strong></td>
+<td>In your browser, navigate to the CLEAR Staff SharePoint site. Go to: <strong>CLEAR Shared &gt; CLEAR Learning Facilitation &gt; Status-Report-Emails &gt; EQ-Results</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>16</strong></td>
+<td>Drag and drop the selected HTML files from File Explorer into the <strong>EQ-Results</strong> folder in SharePoint. Power Automate will automatically send each email from the <strong>CLEAR Learning shared mailbox</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout note"><p><strong>Note:</strong> Each HTML file is named <strong>EQ_Report_[learner-email-address].html</strong>. Power Automate uses the email address in the filename to route each message to the correct recipient.</p></div>
+<div class="callout tip"><p><strong>Tip:</strong> To verify that emails were sent, check the <strong>Sent</strong> folder in the CLEAR Learning shared mailbox, or navigate to the <strong>CLEAR Shared &gt; CLEAR Learning Facilitation &gt; Status-Report-Emails &gt; Sent</strong> folder in SharePoint.</p></div>
+<h3 id="part-4-send-instructor-cohort-reports">Part 4: Send Instructor Cohort Reports</h3>
+<p>Instructors receive a cohort-level report showing overall class averages, threshold comparisons, percentage of learners above the HFT per domain, and a full table of individual learner scores for their reference.</p>
+<div class="table-wrap"><table class="steps">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead><tr class="header">
+<th><strong>Step</strong></th>
+<th><strong>Action</strong></th>
+</tr></thead><tbody>
+<tr class="even">
+<td><strong>17</strong></td>
+<td>On the <strong>Generate Reports</strong> page, locate the <strong>Instructor Cohort Report</strong> card at the top on the right.</td>
+</tr>
+<tr class="odd">
+<td><strong>18</strong></td>
+<td><strong>Check the box</strong> next to each instructor who should receive the cohort report for this session. By default, none are pre-selected.</td>
+</tr>
+<tr class="even">
+<td><strong>19</strong></td>
+<td>If an instructor is not in the list, enter their <strong>First Last</strong> name in the <strong>Add Instructor</strong> name field and their <strong>email address</strong> in the email field, then click <strong>+ Add</strong>. They will appear at the bottom of the list, checked and ready to include.</td>
+</tr>
+<tr class="odd">
+<td><strong>20</strong></td>
+<td>To preview the instructor report before downloading, click <strong>Preview</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>21</strong></td>
+<td>Click <strong>Download for Selected</strong>. One HTML file will be generated per selected instructor. If your browser asks permission to download multiple files, click <strong>Allow</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>22</strong></td>
+<td>Drag and drop the downloaded HTML files directly into the <strong>CLEAR Shared &gt; CLEAR Learning Facilitation &gt; Status-Report-Emails &gt; EQ-Results</strong> folder. These files do not need to be unzipped — they download individually. Power Automate will send each one from the CLEAR Learning shared mailbox.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout important"><p><strong>Important:</strong> Instructor report files are named <strong>EQ_Report_[instructor-email-address].html</strong>. Make sure the email address is correct before uploading to SharePoint, especially for instructors added manually via the Add Instructor field.</p></div>
+<div class="callout tip"><p><strong>Tip:</strong> The instructor report is personalized with each instructor's name in the greeting and includes the program name and cohort name in the introduction so they have full context for the results.</p></div>
+<h2 id="quick-reference-the-four-eq-domains">Quick Reference: The Four EQ Domains</h2>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 10%" />
+<col style="width: 14%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Domain</strong></td>
+<td><strong>HFT</strong></td>
+<td><strong>Max Score</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Self-Awareness</strong></td>
+<td>36</td>
+<td>48</td>
+<td>Recognizes how feelings, beliefs, and behavior affect others; accurately assesses personal strengths and limitations.</td>
+</tr>
+<tr class="odd">
+<td><strong>Empathy</strong></td>
+<td>18</td>
+<td>24</td>
+<td>Considers others' feelings in decision-making; understands and takes an active interest in others' concerns.</td>
+</tr>
+<tr class="even">
+<td><strong>Self-Motivation</strong></td>
+<td>24</td>
+<td>32</td>
+<td>Controls disruptive impulses; maintains integrity, adaptability, and internal standards of excellence; passionate about their work.</td>
+</tr>
+<tr class="odd">
+<td><strong>Social Skills</strong></td>
+<td>18</td>
+<td>24</td>
+<td>Senses others' developmental needs; inspires groups; builds effective inter-personal relationships and works well with others.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<div class="table-wrap"><table class="data">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 61%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Issue</strong></td>
+<td><strong>What to do</strong></td>
+</tr>
+<tr class="even">
+<td><strong>"Connection failed" error on load</strong></td>
+<td>Click Test Connection. If it still fails, your auth token may have expired. Contact your administrator for a new token.</td>
+</tr>
+<tr class="odd">
+<td><strong>"No completed survey responses found"</strong></td>
+<td>Confirm the correct program and cohort are selected. Verify in TalentLMS that learners have actually submitted the EQ survey, not just opened it.</td>
+</tr>
+<tr class="even">
+<td><strong>Groups dropdown shows "Could not load groups"</strong></td>
+<td>The API connection is not active. Click Test Connection and try again.</td>
+</tr>
+<tr class="odd">
+<td><strong>Learner is missing from the results</strong></td>
+<td>The learner may not have completed the survey. Check their survey status in TalentLMS. You can re-run the report at any time to pick up late submissions.</td>
+</tr>
+<tr class="even">
+<td><strong>Browser blocks downloading multiple files</strong></td>
+<td>Click Allow when prompted. This is a one-time browser permission for the tool's domain.</td>
+</tr>
+<tr class="odd">
+<td><strong>Emails not appearing in SharePoint Sent folder</strong></td>
+<td>Allow a few minutes for Power Automate to process. If emails have not sent after 15 minutes, check the Power Automate flow run history for errors.</td>
+</tr>
+</tbody>
+</table></div>
+
+<!-- ===== CONTENT END ===== -->
+</main>
+</div>
+<footer class="doc-footer">CLEAR Learning &middot; Program Coordinator Process Guides</footer>
+</body>
+</html>
